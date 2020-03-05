@@ -1,0 +1,25 @@
+#SearchBar {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    top: 25px;
+    left:calc(50% - 30vw);
+    z-index: 50;
+    width: 60vw;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, .15);
+}
+
+#SearchBar:focus-within {
+    box-shadow: 0 0 5px 0px rgba(0, 0, 0, .3);
+}
+
+#SearchBar input {
+    flex: 1;
+    border: 0;
+    font-size: 18px;
+    outline: none;
+    padding: 10px 15px;
+}
