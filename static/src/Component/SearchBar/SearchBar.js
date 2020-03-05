@@ -8,7 +8,7 @@ export default class SearchBar extends React.Component {
     return (
       <div id="SearchBar">
         
-        <input type="text" />
+        <input type="text" placeholder="Rechercher un biere, une brasserie, une ville, ..." />
 
       </div>
     )
