@@ -7,9 +7,7 @@
     top: 15vh;
     left: 2.5vw;
     z-index: 50;
-    width: 40vw;
-    min-width: 450px;
-    max-width: 500px;
+    width: 350px;
     background: white;
     border-radius: 10px;
     box-shadow: 0 0 5px 0 rgba(0, 0, 0, .15);
@@ -38,6 +36,7 @@
     width: 100%;
     padding: 0 25px;
     padding-top: 15px;
+    font-size: 18px;
     margin: 0;
     box-sizing: border-box;
     border-top: 1px solid rgba(0,0,0,.15);
@@ -60,7 +59,7 @@
 }
 
 #CityBar .Weather .WeatherInfo .Temperature{
-    font-size: 25px;
+    font-size: 22px;
     font-weight: 800;
 }
 
