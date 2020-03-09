@@ -22,7 +22,13 @@ class CategorieDAO {
     findById(id) {
         let sqlRequest = "SELECT * FROM categorie WHERE id=$id";
         let sqlParams = {$id: id};
-        //console.log(sqlParams);
+        return this.common.findOne(sqlRequest, sqlParams)
+            .then(row => new Categorie(row))
+
+    };
+    findByName(name) {
+        let sqlRequest = "SELECT * FROM categorie WHERE cat_name=$name";
+        let sqlParams = {$name: name};
         return this.common.findOne(sqlRequest, sqlParams)
             .then(row => new Categorie(row))
 

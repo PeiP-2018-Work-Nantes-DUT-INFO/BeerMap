@@ -25,6 +25,13 @@ class CategorieController {
             .catch(this.common.findError(res));
     };
 
+    findByName(req, res) {
+        let name = req.params.name;
+        this.categorieDAO.findByName(name)
+            .then(this.common.findSuccess(res))
+            .catch(this.common.findError(res));
+    };
+
     create(req, res) {
         let categorie = new Categorie(req.body);
         return this.categorieDAO.create(categorie)

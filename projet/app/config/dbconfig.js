@@ -234,7 +234,7 @@ const populateStyle = (db) => new Promise((resolve, reject) =>{
 
 });
 
-const populateBewery = (db) => new Promise((resolve, reject) =>{
+const populateBrewery = (db) => new Promise((resolve, reject) =>{
     const fileName = './data/open-beer-database-breweries.csv';
     const stream = fs.createReadStream(fileName, {encoding: 'utf8'});
 
@@ -384,6 +384,9 @@ const populateBeer = (db) => new Promise((resolve, reject) =>{
             if (row.cat_id == -1) row.cat_id=null;
             if (row.style_id == -1) row.style_id=null;
 
+            if(typeof(row.alcohol_by_volume) === "string"){
+                row.alcohol_by_volume = Number(row.alcohol_by_volume.replace(',','.'));
+            }
             const sqlParams = {
                 $name: row.name,
                 $id: row.id,
@@ -441,7 +444,7 @@ const init =  new Promise((resolve, reject) => {
         .then(db => createTable(db))
         .then(db => populateCategorie(db))
         .then(db => populateStyle(db))
-        .then(db => populateBewery(db))
+        .then(db => populateBrewery(db))
         .then(db => populateGeocode(db))
         .then(db => populateBeer(db))
         .then(db => {
