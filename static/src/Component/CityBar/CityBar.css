@@ -1,0 +1,96 @@
+#CityBar {
+    position: absolute;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: center;
+    top: 15vh;
+    left: 2.5vw;
+    z-index: 50;
+    width: 40vw;
+    min-width: 450px;
+    max-width: 500px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, .15);
+}
+
+#CityBar .CityBarTitle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 25px;
+    box-sizing: border-box;
+}
+
+#CityBar .CityBarTitle .Title {
+    color: black;
+    font-size: 25px;
+    font-weight: 800;
+}
+
+#CityBar .CityBarTitle svg {
+    cursor: pointer;
+}
+
+#CityBar h2 {
+    width: 100%;
+    padding: 0 25px;
+    padding-top: 15px;
+    margin: 0;
+    box-sizing: border-box;
+    border-top: 1px solid rgba(0,0,0,.15);
+}
+
+#CityBar .Weather {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#CityBar .Weather img{
+    margin-right: 25px;
+    width: 100px;
+}
+
+#CityBar .Weather .WeatherInfo{
+    display: flex;
+    flex-direction: column;
+}
+
+#CityBar .Weather .WeatherInfo .Temperature{
+    font-size: 25px;
+    font-weight: 800;
+}
+
+#CityBar .Weather .WeatherInfo .Title{
+    margin-top: 10px;
+    font-size: 18px;
+    text-transform : capitalize ;
+}
+
+#CityBar .CityBarItem {
+    cursor: pointer;
+    box-sizing: border-box;
+    padding: 10px 15px;
+    box-shadow: 0 0 5px 0px rgba(0, 0, 0, .3);
+    text-decoration: none;
+    color: black;
+    justify-content: flex-start;
+}
+
+#CityBar .CityBarItem:hover {
+    background: rgba(240, 240, 240);
+}
+
+#CityBar .CityBarItem .SubTitle {
+    color: grey;
+    font-weight: 800;
+    padding: 0 10px;
+}
+
+#CityBar .CityBarItem .Value {
+    color: blue;
+    font-weight: 800;
+}
