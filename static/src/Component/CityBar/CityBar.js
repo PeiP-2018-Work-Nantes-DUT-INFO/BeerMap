@@ -11,6 +11,7 @@ export default class CityBar extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
+      hidden: false,
       weather: {
         icon: ""
       }
@@ -33,12 +34,12 @@ export default class CityBar extends React.Component {
   }
 
   close = _ => {
-    window.alert("Close")
+    this.setState({hidden: true})
   }
 
   render() {
     return (
-      <div id="CityBar">
+      <div id="CityBar" className={this.state.hidden && "hidden"}>
         <div className="CityBarTitle">
           <Compass size={25}/>
           <span className="Title">Ales</span>

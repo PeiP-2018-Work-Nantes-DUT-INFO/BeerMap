@@ -3,6 +3,8 @@ import React from 'react';
 import "./SearchBar.css"
 import {Search, X, Droplet, Home, Compass} from 'react-feather';
 
+import Map from "../../API/Map"
+
 function CityResult(props) {
   return (
     <a href={"#search" + props.name} className="SearchBarItem City">
@@ -61,8 +63,16 @@ export default class SearchBar extends React.Component {
   onSearch = e => {
     if (e.charCode == 13) {
 
+      const search = this.input.current.value
+
       // TODO: APPEL API
-      console.log("Search : ", this.input.current.value)
+      console.log("Search : ", search)
+
+      Map.searchByName(search).then(d => {
+        console.log(d)
+      }).catch(err => {
+        console.error(err)
+      })
 
       this.setState({
         result: [
