@@ -20,11 +20,10 @@ database
         app.use(bodyParser.json());
 
         /* Router configuration */
-        const REST_API_ROOT = '/api';
-        app.use(REST_API_ROOT, require('./app/routes/router'));
+        app.use('/api', require('./app/routes/router'));
 
         //accès aux pages statiques
-        app.use('/static', express.static('static'));
+        app.use(express.static('../static/build/'));
 
     })
     .catch(err => {console.log(err)});
