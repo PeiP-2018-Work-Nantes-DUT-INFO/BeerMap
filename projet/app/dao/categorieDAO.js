@@ -16,22 +16,26 @@ class CategorieDAO {
                 const categories = rows.map(row => new Categorie(row));
                 return categories;
             })
-            .catch(err=> console.log(err));
+            .catch(err => err);
     };
 
     findById(id) {
+        id = parseInt(id,10);
+        if(isNaN(id)){
+            throw new DaoError(808,"Integer required");
+        }
         let sqlRequest = "SELECT * FROM categorie WHERE id=$id";
         let sqlParams = {$id: id};
         return this.common.findOne(sqlRequest, sqlParams)
             .then(row => new Categorie(row))
-
+            .catch(err => err);
     };
     findByName(name) {
         let sqlRequest = "SELECT * FROM categorie WHERE cat_name=$name";
         let sqlParams = {$name: name};
         return this.common.findOne(sqlRequest, sqlParams)
             .then(row => new Categorie(row))
-
+            .catch(err => err);
     };
 
     create(categorie) {
@@ -43,11 +47,7 @@ class CategorieDAO {
             $catName: categorie.catName,
             $lastMod : categorie.lastMod
         };
-        //console.log(sqlParams, sqlRequest);
         return this.common.run(sqlRequest, sqlParams);
-
-
-
     };
 
     deleteById(id) {

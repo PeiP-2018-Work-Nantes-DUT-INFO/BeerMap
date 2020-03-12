@@ -16,5 +16,8 @@ router.get('/brewery-id/:id', function (req, res) {
     geocodeController.findByBreweryId(req, res);
 });
 
+router.get('/brewery-name/:name', function (req, res) {
+    geocodeController.findByBreweryName(req, res);
+});
 
 module.exports = router;

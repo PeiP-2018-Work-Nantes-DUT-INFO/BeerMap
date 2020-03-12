@@ -16,4 +16,8 @@ router.get('/name/:name', function (req, res) {
     breweryController.findByName(req, res);
 });
 
+router.get('/city/:city', function (req, res) {
+    breweryController.findAllByCity(req, res);
+});
+
 module.exports = router;

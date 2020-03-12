@@ -31,6 +31,13 @@ class GeocodeController {
             .then(this.common.findSuccess(res))
             .catch(this.common.findError(res));
     };
+
+    findByBreweryName(req, res) {
+        let name = req.params.name;
+        this.geocodeDAO.findByBreweryName(name)
+            .then(this.common.findSuccess(res))
+            .catch(this.common.findError(res));
+    };
 }
 
 module.exports = GeocodeController;

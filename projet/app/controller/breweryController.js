@@ -30,6 +30,12 @@ class BreweryController {
             .then(this.common.findSuccess(res))
             .catch(this.common.findError(res));
     };
+    findAllByCity(req, res) {
+        let city = req.params.city;
+        this.breweryDAO.findAllByCity(city)
+            .then(this.common.findSuccess(res))
+            .catch(this.common.findError(res));
+    };
 }
 
 
