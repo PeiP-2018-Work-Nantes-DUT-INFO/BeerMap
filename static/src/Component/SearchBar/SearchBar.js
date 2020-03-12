@@ -7,7 +7,7 @@ import Map from "../../API/Map"
 
 function CityResult(props) {
   return (
-    <a href={"#search" + props.name} className="SearchBarItem City">
+    <a href={"#search" + props.name} onClick={_ => props.onClick(props)} className="SearchBarItem City">
       <Compass size={25}/>
       <span className="SubTitle">Ville :</span>
       <span className="Value">{props.name}</span>
@@ -16,7 +16,7 @@ function CityResult(props) {
 }
 function BeerResult(props) {
   return (
-    <a href={"#search" + props.name} className="SearchBarItem Beer">
+    <a href={"#search" + props.name} onClick={_ => props.onClick(props)} className="SearchBarItem Beer">
       <Droplet size={25}/>
       <span className="SubTitle">Bière :</span>
       <span className="Value">{props.name}</span>
@@ -25,7 +25,7 @@ function BeerResult(props) {
 }
 function BreweryResult(props) {
   return (
-    <a href={"#search" + props.name} className="SearchBarItem Brewery">
+    <a href={"#search" + props.name} onClick={_ => props.onClick(props)} className="SearchBarItem Brewery">
       <Home size={25}/>
       <span className="SubTitle">Brasserie :</span>
       <span className="Value">{props.name}</span>
@@ -78,7 +78,11 @@ export default class SearchBar extends React.Component {
         result: [
           {
             type: "city",
-            name: "Ales"
+            name: "Ales",
+            center: {
+              lat: 44.1333,
+              lon: 4.0833
+            }
           }, {
             type: "beer",
             name: "Skoll"
@@ -116,13 +120,13 @@ export default class SearchBar extends React.Component {
 				.map((item, i) => {
 					switch (item.type) {
 					case "city":
-						return <CityResult key={"res" + i} {...item}/>
+						return <CityResult onClick={this.props.onSearch} key={"res" + i} {...item}/>
 						break;
 					case "beer":
-						return <BeerResult key={"res" + i} {...item}/>
+						return <BeerResult onClick={this.props.onSearch} key={"res" + i} {...item}/>
 						break;
 					case "brewery":
-						return <BreweryResult key={"res" + i} {...item}/>
+						return <BreweryResult onClick={this.props.onSearch} key={"res" + i} {...item}/>
 						break;
 					}
 				})

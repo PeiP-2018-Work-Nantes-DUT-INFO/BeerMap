@@ -5,6 +5,8 @@ import './index.css';
 import SearchBar from './Component/SearchBar/SearchBar';
 import CityBar from './Component/CityBar/CityBar';
 
+import IP from './API/IP';
+
 import ReactMapboxGl, {Layer, Feature} from 'react-mapbox-gl';
 
 const Map = ReactMapboxGl({
@@ -14,16 +16,41 @@ const Map = ReactMapboxGl({
 
 class App extends React.Component {
 
+  constructor(props){
+    super(props)
+    this.state = {
+      center: [0.0, 0.0]
+    }
+  }
+
+  componentDidMount(){
+    IP.getIpLocation().then(data => {
+      this.setMapCenter(data.lon, data.lat)
+    })
+  }
+
+  setMapCenter(lon, lat) {
+	this.setState({center: [lon, lat]})
+  }
+
+  onSearch = (city) => {
+
+	console.log(city)
+	this.setMapCenter(city.center.lon, city.center.lat)
+
+  }
+
   render() {
     return (
       <div className="AppBlock">
 
-        <SearchBar/>
+        <SearchBar onSearch={this.onSearch} />
 
         <CityBar/>
 
         <Map
           style="mapbox://styles/mapbox/streets-v9"
+          center={this.state.center}
           containerStyle={{
           display: "block",
           width: "100%",
