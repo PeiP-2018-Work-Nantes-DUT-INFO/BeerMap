@@ -24,13 +24,13 @@ class GeocodeController {
             .then(this.common.findSuccess(res))
             .catch(this.common.findError(res));
     };
-    findByName(req, res) {
-        let name = req.params.name;
-        this.geocodeDAO.findByName(name)
+    
+    findByBreweryId(req, res) {
+        let id = req.params.id;
+        this.geocodeDAO.findByBreweryId(id)
             .then(this.common.findSuccess(res))
             .catch(this.common.findError(res));
     };
 }
-
 
 module.exports = GeocodeController;

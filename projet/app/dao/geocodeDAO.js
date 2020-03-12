@@ -26,9 +26,10 @@ class GeocodeDAO {
             .then(row => new Geocode(row))
 
     };
-    findByName(name) {
-        let sqlRequest = "SELECT * FROM geocode WHERE breweries=$name";
-        let sqlParams = {$name: name};
+
+    findByBreweryId(brewery_id) {
+        let sqlRequest = "SELECT * FROM geocode WHERE brewery_id=$brewery_id";
+        let sqlParams = {$brewery_id: brewery_id};
         return this.common.findOne(sqlRequest, sqlParams)
             .then(row => new Geocode(row))
 
