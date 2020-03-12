@@ -22,7 +22,7 @@ class CategorieDAO {
     findById(id) {
         id = parseInt(id,10);
         if(isNaN(id)){
-            throw new DaoError(808,"Integer required");
+            throw new DaoError(400,"Integer required");
         }
         let sqlRequest = "SELECT * FROM categorie WHERE id=$id";
         let sqlParams = {$id: id};

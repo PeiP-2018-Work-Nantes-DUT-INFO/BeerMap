@@ -19,17 +19,25 @@ class BreweryController {
     }
 
     findById(req, res) {
-        let id = req.params.id;
-        this.breweryDAO.findById(id)
-            .then(this.common.findSuccess(res))
-            .catch(this.common.findError(res));
+        try{
+            let id = req.params.id;
+            this.breweryDAO.findById(id)
+                .then(this.common.findSuccess(res))
+                .catch(this.common.findError(res));
+        }
+        catch(err){
+            res.status(err.errorCode);
+            res.json(err);
+        }
     };
+
     findByName(req, res) {
         let name = req.params.name;
         this.breweryDAO.findByName(name)
             .then(this.common.findSuccess(res))
             .catch(this.common.findError(res));
     };
+    
     findAllByCity(req, res) {
         let city = req.params.city;
         this.breweryDAO.findAllByCity(city)

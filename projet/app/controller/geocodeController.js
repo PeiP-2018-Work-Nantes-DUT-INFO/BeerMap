@@ -19,17 +19,29 @@ class GeocodeController {
     }
 
     findById(req, res) {
-        let id = req.params.id;
-        this.geocodeDAO.findById(id)
-            .then(this.common.findSuccess(res))
-            .catch(this.common.findError(res));
+        try{
+            let id = req.params.id;
+            this.geocodeDAO.findById(id)
+                .then(this.common.findSuccess(res))
+                .catch(this.common.findError(res));
+        }
+        catch(err){
+            res.status(err.errorCode);
+            res.json(err);
+        }
     };
     
     findByBreweryId(req, res) {
-        let id = req.params.id;
-        this.geocodeDAO.findByBreweryId(id)
-            .then(this.common.findSuccess(res))
-            .catch(this.common.findError(res));
+        try{
+            let id = req.params.id;
+            this.geocodeDAO.findByBreweryId(id)
+                .then(this.common.findSuccess(res))
+                .catch(this.common.findError(res));
+        }
+        catch(err){
+            res.status(err.errorCode);
+            res.json(err);
+        }
     };
 
     findByBreweryName(req, res) {

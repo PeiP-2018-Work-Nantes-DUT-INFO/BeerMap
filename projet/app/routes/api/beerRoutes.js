@@ -24,8 +24,12 @@ router.get('/max-volume/:volume', function (req, res) {
     beerController.findByVolumeLowerThan(req, res);
 });
 
-router.get('/state/:state', function (req, res) {
-    beerController.findByState(req, res);
+router.get('/country/:country', function (req, res) {
+    beerController.findByCountry(req, res);
+});
+
+router.get('/city/:city', function (req, res) {
+    beerController.findByCity(req, res);
 });
 
 module.exports = router;

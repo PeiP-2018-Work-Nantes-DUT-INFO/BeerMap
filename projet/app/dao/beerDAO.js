@@ -24,7 +24,7 @@ class BeerDAO {
     findById(id) {
         id = parseInt(id,10);
         if(isNaN(id)){
-            throw new DaoError(808,"Integer required");
+            throw new DaoError(400,"Integer required");
         }
         let sqlRequest = "SELECT * FROM beer WHERE id=$id";
         let sqlParams = {$id: id};
@@ -32,6 +32,7 @@ class BeerDAO {
             .then(row => new Beer(row))
             .catch(err => err);
     };
+    
     findByName(name) {
         let sqlRequest = "SELECT * FROM beer WHERE name=$name";
         let sqlParams = {$name: name};
@@ -39,10 +40,11 @@ class BeerDAO {
             .then(row => new Beer(row))
             .catch(err => err);
     };
+
     findByVolumeHigherThan(volume) {
         volume = parseInt(volume,10);
         if(isNaN(volume)){
-            throw new DaoError(808,"Integer required");
+            throw new DaoError(400,"Integer required");
         }
 
         let sqlRequest = "SELECT * FROM beer WHERE alcohol_by_volume >= $volume";
@@ -51,10 +53,11 @@ class BeerDAO {
             .then(row => row.map(beer => new Beer(beer)))
             .catch(err => err);
     };
+
     findByVolumeLowerThan(volume) {
         volume = parseInt(volume,10);
         if(isNaN(volume)){
-            throw new DaoError(808,"Integer required");
+            throw new DaoError(400,"Integer required");
         }
         
         let sqlRequest = "SELECT * FROM beer WHERE alcohol_by_volume <= $volume";
@@ -63,9 +66,18 @@ class BeerDAO {
             .then(row => row.map(beer => new Beer(beer)))
             .catch(err => err);
     };
-    findByState(state) {
-        let sqlRequest = "SELECT * FROM beer WHERE state = $state";
-        let sqlParams = {$state: state};
+
+    findByCountry(country) {
+        let sqlRequest = "SELECT * FROM beer WHERE country = $country";
+        let sqlParams = {$country: country};
+        return this.common.findAllWithParams(sqlRequest, sqlParams)
+            .then(row => row.map(beer => new Beer(beer)))
+            .catch(err => err);
+    };
+
+    findByCity(city) {
+        let sqlRequest = "SELECT * FROM beer WHERE city = $city";
+        let sqlParams = {$city: city};
         return this.common.findAllWithParams(sqlRequest, sqlParams)
             .then(row => row.map(beer => new Beer(beer)))
             .catch(err => err);

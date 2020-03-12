@@ -19,10 +19,16 @@ class CategorieController {
     }
 
     findById(req, res) {
-        let id = req.params.id;
-        this.categorieDAO.findById(id)
-            .then(this.common.findSuccess(res))
-            .catch(this.common.findError(res));
+        try{
+            let id = req.params.id;
+            this.categorieDAO.findById(id)
+                .then(this.common.findSuccess(res))
+                .catch(this.common.findError(res));
+        }
+        catch(err){
+            res.status(err.errorCode);
+            res.json(err);
+        }
     };
 
     findByName(req, res) {

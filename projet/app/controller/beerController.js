@@ -12,7 +12,7 @@ class BeerController {
     }
 
 
-    findAll(req,res) {
+    findAll(res) {
         this.beerDAO.findAll()
             .then(this.common.findSuccess(res))
             .catch(this.common.findError(res));
@@ -26,7 +26,7 @@ class BeerController {
                 .catch(this.common.findError(res));
         }
         catch(err){
-            res.status(404);
+            res.status(err.errorCode);
             res.json(err);
         }
     };
@@ -46,7 +46,7 @@ class BeerController {
                 .catch(this.common.findError(res));
         }
         catch(err){
-            res.status(404);
+            res.status(err.errorCode);
             res.json(err);
         }
     };
@@ -59,14 +59,20 @@ class BeerController {
                 .catch(this.common.findError(res));
         }
         catch(err){
-            res.status(404);
+            res.status(err.errorCode);
             res.json(err);
         }
     };
 
-    findByState(req, res) {
-        let state = req.params.state;
-        this.beerDAO.findByState(state)
+    findByCountry(req, res) {
+        let country = req.params.country;
+        this.beerDAO.findByCountry(country)
+            .then(this.common.findSuccess(res))
+            .catch(this.common.findError(res));
+    };
+    findByCity(req, res) {
+        let city = req.params.city;
+        this.beerDAO.findByCity(city)
             .then(this.common.findSuccess(res))
             .catch(this.common.findError(res));
     };
