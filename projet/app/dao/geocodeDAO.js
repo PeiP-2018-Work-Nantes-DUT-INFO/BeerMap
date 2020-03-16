@@ -1,7 +1,11 @@
 const Geocode = require('../model/geocode');
 
-const daoCommon = require('./commons/daoCommon');
+const daoCommon = require('./commons/daoCommon'); // fonctions de DAO communes à tous les DAO
+const DaoError = require('./commons/daoError'); // pour gérer les erreurs
 
+/**
+ * DAO permettant de récupérer les géocodes selon différents critères, en faisant des requêtes dans la base de données.
+ */
 class GeocodeDAO {
 
     constructor() {
@@ -20,7 +24,7 @@ class GeocodeDAO {
     };
 
     findById(id) {
-        id = parseInt(id,10);
+        id = parseInt(id); // on vérifie que l'id fourni peut bien être casté en entier
         if(isNaN(id)){
             throw new DaoError(400,"Integer required");
         }
@@ -33,7 +37,7 @@ class GeocodeDAO {
     };
 
     findByBreweryId(brewery_id) {
-        brewery_id = parseInt(brewery_id,10);
+        brewery_id = parseInt(brewery_id); // on vérifie que l'id fourni peut bien être casté en entier
         if(isNaN(brewery_id)){
             throw new DaoError(400,"Integer required");
         }

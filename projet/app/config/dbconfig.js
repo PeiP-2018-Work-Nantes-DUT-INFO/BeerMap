@@ -255,6 +255,10 @@ const populateBrewery = (db) => new Promise((resolve, reject) =>{
                 "id,breweries,address1,address2,city,state,code,country,phone,website,filepath,descript,last_mod,coordinates) " +
                 "VALUES ($id,$breweries,$address1,$address2,$city,$state,$code,$country,$phone,$website,$filepath,$descript,$lastMod,$coordinates)";
 
+                
+            if(typeof(row.coordinates) === "string"){
+                row.coordinates = row.coordinates.split(',').map(Number);
+            }
             const sqlParams = {
                 $id: row.id,
                 $breweries: row.breweries,

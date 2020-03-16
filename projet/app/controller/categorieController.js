@@ -1,9 +1,11 @@
 const CategorieDAO = require('../dao/categorieDAO');
 const Categorie = require('../model/categorie');
 
-/* Load Controller Common function */
-const ControllerCommon = require('./common/controllerCommon');
+const ControllerCommon = require('./common/controllerCommon');// fonctions communes pour le contrôleur
 
+/**
+ * Contrôleur permettant de récupérer les catégories de la base de données en utilisant le DAO associé
+ */
 class CategorieController {
 
     constructor() {

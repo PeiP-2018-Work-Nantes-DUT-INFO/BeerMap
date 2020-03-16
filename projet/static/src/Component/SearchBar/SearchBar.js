@@ -6,10 +6,10 @@ import { Search, X, Droplet, Home, Compass } from 'react-feather';
 
 function CityResult(props) {
 	return (
-		<a href={"#search" + props.name} onClick={_ => props.onClick(props)} className="SearchBarItem City">
+		<a href={"#search" + props.address} onClick={_ => props.onClick(props)} className="SearchBarItem City">
 			<Compass size={25} />
 			<span className="SubTitle">Ville :</span>
-			<span className="Value">{props.name}</span>
+			<span className="Value">{props.address}</span>
 		</a>
 	)
 }
@@ -47,15 +47,12 @@ export default class SearchBar extends React.Component {
 
 	componentDidMount() {
 		searchResult(data => {
-			console.log("WEBSOCKET RESPONSE", data)
 
 			var city = Array.isArray(data.city) ? data.city.map(el => { el.type = "city"; return el }) : []
 			var beer = Array.isArray(data.beer) ? data.beer.map(el => { el.type = "beer"; return el }) : []
 			var brewery = Array.isArray(data.brewery) ? data.brewery.map(el => { el.type = "brewery"; return el }) : []
 
 			this.setState({result: [...city, ...beer, ...brewery] })
-
-			console.log(this.state)
 
 		});
 	}
@@ -79,6 +76,13 @@ export default class SearchBar extends React.Component {
 		if (e.charCode == 13) {
 			search(this.input.current.value);
 		}
+	}
+
+	onSearchResultClick = data => {
+
+		this.clear()
+
+		this.props.onSearchResultClick(data)
 	}
 
 	render() {
@@ -105,13 +109,13 @@ export default class SearchBar extends React.Component {
 						.map((item, i) => {
 							switch (item.type) {
 								case "city":
-									return <CityResult onClick={this.props.onSearch} key={"res" + i} {...item} />
+									return <CityResult onClick={this.onSearchResultClick} key={"res" + i} {...item} />
 									break;
 								case "beer":
-									return <BeerResult onClick={this.props.onSearch} key={"res" + i} {...item} />
+									return <BeerResult onClick={this.onSearchResultClick} key={"res" + i} {...item} />
 									break;
 								case "brewery":
-									return <BreweryResult onClick={this.props.onSearch} key={"res" + i} {...item} />
+									return <BreweryResult onClick={this.onSearchResultClick} key={"res" + i} {...item} />
 									break;
 							}
 						})

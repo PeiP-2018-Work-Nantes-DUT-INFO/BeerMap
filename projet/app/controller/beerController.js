@@ -1,9 +1,11 @@
 const BeerDAO = require('../dao/beerDAO');
 const Beer = require('../model/beer');
 
-/* Load Controller Common function */
-const ControllerCommon = require('./common/controllerCommon');
+const ControllerCommon = require('./common/controllerCommon');// fonctions communes pour le contrôleur
 
+/**
+ * Contrôleur permettant de récupérer les bières de la base de données en utilisant le DAO associé
+ */
 class BeerController {
 
     constructor() {

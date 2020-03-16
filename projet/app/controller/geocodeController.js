@@ -2,8 +2,11 @@ const GeocodeDAO = require('../dao/geocodeDAO');
 const geocodeApi = require('../../geocodeApi');
 
 /* Load Controller Common function */
-const ControllerCommon = require('./common/controllerCommon');
+const ControllerCommon = require('./common/controllerCommon');// fonctions communes pour le contrôleur
 
+/**
+ * Contrôleur permettant de récupérer les géocodes de la base de données en utilisant le DAO associé
+ */
 class GeocodeController {
 
     constructor() {

@@ -1,7 +1,11 @@
 const Categorie = require('../model/categorie');
 
-const daoCommon = require('./commons/daoCommon');
+const daoCommon = require('./commons/daoCommon'); // fonctions de DAO communes à tous les DAO
+const DaoError = require('./commons/daoError'); // pour gérer les erreurs
 
+/**
+ * DAO permettant de récupérer les catégories selon différents critères, en faisant des requêtes dans la base de données.
+ */
 class CategorieDAO {
 
     constructor() {
@@ -20,7 +24,7 @@ class CategorieDAO {
     };
 
     findById(id) {
-        id = parseInt(id,10);
+        id = parseInt(id); // on vérifie que l'id fourni peut bien être casté en entier
         if(isNaN(id)){
             throw new DaoError(400,"Integer required");
         }
