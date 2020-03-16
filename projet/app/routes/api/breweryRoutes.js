@@ -5,7 +5,7 @@ const BreweryController = require('../../controller/breweryController');
 const breweryController = new BreweryController();
 
 router.get('/', function (req, res) {
-    breweryController.findAll(res);
+    breweryController.findAll(req, res);
 });
 
 router.get('/id/:id', function (req, res) {

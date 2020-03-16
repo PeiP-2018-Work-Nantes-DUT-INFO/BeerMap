@@ -12,20 +12,20 @@ class BreweryController {
     }
 
 
-    findAll(res) {
+    findAll(req, res) {
         this.breweryDAO.findAll()
             .then(this.common.findSuccess(res))
             .catch(this.common.findError(res));
     }
 
     findById(req, res) {
-        try{
+        try {
             let id = req.params.id;
             this.breweryDAO.findById(id)
                 .then(this.common.findSuccess(res))
                 .catch(this.common.findError(res));
         }
-        catch(err){
+        catch (err) {
             res.status(err.errorCode);
             res.json(err);
         }
@@ -37,7 +37,7 @@ class BreweryController {
             .then(this.common.findSuccess(res))
             .catch(this.common.findError(res));
     };
-    
+
     findAllByCity(req, res) {
         let city = req.params.city;
         this.breweryDAO.findAllByCity(city)

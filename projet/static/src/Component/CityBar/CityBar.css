@@ -100,3 +100,68 @@
     color: blue;
     font-weight: 800;
 }
+
+
+#CityBar .Breweries {
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    width: 100%;
+    height: fit-content;
+    max-height: 20vh;
+}
+
+#CityBar .Breweries .Brewerie {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    color: black;
+    padding: 10px 15px;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+#CityBar .Breweries .Brewerie:hover {
+    background: rgba(0, 0, 0, .15)
+}
+
+#CityBar .Breweries .Brewerie .left {
+    display: flex;
+    align-items: center;
+}
+
+#CityBar .Breweries .Brewerie .left svg {
+    margin-right: 10px;
+}
+
+
+
+
+
+
+#OpenCityBar {
+    background-color: white;
+    color: #858585;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, .15);
+    writing-mode: vertical-rl;
+    -webkit-writing-mode: vertical-rl;
+    -ms-writing-mode: vertical-rl;
+
+    padding: 10px 5px;
+
+    position: absolute;
+    top: 50%;
+    left:0;
+    transform: translateY(-50%);
+
+    z-index: 1;
+
+    cursor: pointer;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+
+#OpenCityBar.hidden {
+    display: none;
+}

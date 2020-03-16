@@ -1,5 +1,5 @@
 const GeocodeDAO = require('../dao/geocodeDAO');
-const Geocode = require('../model/geocode');
+const geocodeApi = require('../../geocodeApi');
 
 /* Load Controller Common function */
 const ControllerCommon = require('./common/controllerCommon');
@@ -12,33 +12,33 @@ class GeocodeController {
     }
 
 
-    findAll(res) {
+    findAll(req, res) {
         this.geocodeDAO.findAll()
             .then(this.common.findSuccess(res))
             .catch(this.common.findError(res));
     }
 
     findById(req, res) {
-        try{
+        try {
             let id = req.params.id;
             this.geocodeDAO.findById(id)
                 .then(this.common.findSuccess(res))
                 .catch(this.common.findError(res));
         }
-        catch(err){
+        catch (err) {
             res.status(err.errorCode);
             res.json(err);
         }
     };
-    
+
     findByBreweryId(req, res) {
-        try{
+        try {
             let id = req.params.id;
             this.geocodeDAO.findByBreweryId(id)
                 .then(this.common.findSuccess(res))
                 .catch(this.common.findError(res));
         }
-        catch(err){
+        catch (err) {
             res.status(err.errorCode);
             res.json(err);
         }
@@ -47,6 +47,13 @@ class GeocodeController {
     findByBreweryName(req, res) {
         let name = req.params.name;
         this.geocodeDAO.findByBreweryName(name)
+            .then(this.common.findSuccess(res))
+            .catch(this.common.findError(res));
+    };
+
+    findCity(req, res) {
+        let name = req.params.name;
+        geocodeApi.searchByName(name)
             .then(this.common.findSuccess(res))
             .catch(this.common.findError(res));
     };

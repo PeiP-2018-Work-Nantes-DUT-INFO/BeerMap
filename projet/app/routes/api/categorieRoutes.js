@@ -5,7 +5,7 @@ const CategorieController = require('../../controller/categorieController');
 const categorieController = new CategorieController();
 
 router.get('/', function (req, res) {
-    categorieController.findAll(res);
+    categorieController.findAll(req, res);
 });
 
 router.get('/id/:id', function (req, res) {

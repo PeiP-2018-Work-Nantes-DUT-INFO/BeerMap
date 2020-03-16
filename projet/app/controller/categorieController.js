@@ -12,20 +12,20 @@ class CategorieController {
     }
 
 
-    findAll(res) {
+    findAll(req, res) {
         this.categorieDAO.findAll()
             .then(this.common.findSuccess(res))
             .catch(this.common.findError(res));
     }
 
     findById(req, res) {
-        try{
+        try {
             let id = req.params.id;
             this.categorieDAO.findById(id)
                 .then(this.common.findSuccess(res))
                 .catch(this.common.findError(res));
         }
-        catch(err){
+        catch (err) {
             res.status(err.errorCode);
             res.json(err);
         }

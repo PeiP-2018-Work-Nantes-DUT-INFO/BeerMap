@@ -12,5 +12,4 @@ router.use('/brewery', require('./api/breweryRoutes'));
 
 router.use('/geocode', require('./api/geocodeRoutes'));
 
-
 module.exports = router;

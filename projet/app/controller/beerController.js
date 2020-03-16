@@ -12,20 +12,20 @@ class BeerController {
     }
 
 
-    findAll(res) {
+    findAll(req, res) {
         this.beerDAO.findAll()
             .then(this.common.findSuccess(res))
             .catch(this.common.findError(res));
     }
 
     findById(req, res) {
-        try{
-            let id =  req.params.id;
+        try {
+            let id = req.params.id;
             this.beerDAO.findById(id)
                 .then(this.common.findSuccess(res))
                 .catch(this.common.findError(res));
         }
-        catch(err){
+        catch (err) {
             res.status(err.errorCode);
             res.json(err);
         }
@@ -35,30 +35,30 @@ class BeerController {
         let name = req.params.name;
         this.beerDAO.findByName(name)
             .then(this.common.findSuccess(res))
-            .catch(this.common.findError(res));  
+            .catch(this.common.findError(res));
     };
 
     findByVolumeHigherThan(req, res) {
-        try{
+        try {
             let alcolholVolume = req.params.volume;
             this.beerDAO.findByVolumeHigherThan(alcolholVolume)
                 .then(this.common.findSuccess(res))
                 .catch(this.common.findError(res));
         }
-        catch(err){
+        catch (err) {
             res.status(err.errorCode);
             res.json(err);
         }
     };
 
     findByVolumeLowerThan(req, res) {
-        try{
+        try {
             let alcolholVolume = req.params.volume;
             this.beerDAO.findByVolumeLowerThan(alcolholVolume)
                 .then(this.common.findSuccess(res))
                 .catch(this.common.findError(res));
         }
-        catch(err){
+        catch (err) {
             res.status(err.errorCode);
             res.json(err);
         }
@@ -70,6 +70,7 @@ class BeerController {
             .then(this.common.findSuccess(res))
             .catch(this.common.findError(res));
     };
+    
     findByCity(req, res) {
         let city = req.params.city;
         this.beerDAO.findByCity(city)

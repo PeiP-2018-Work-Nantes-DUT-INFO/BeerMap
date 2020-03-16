@@ -2,9 +2,8 @@ const sqlite3 = require('sqlite3').verbose();
 const fs = require('fs');
 const parse = require('csv-parse');
 
-//const dbName = 'beerdb.db'; // dbName = ':memory:'; //Pour travailler en mémoirec
-const dbName =  ':memory:';
-
+const dbName = 'beerdb.db'; // dbName = ':memory:'; //Pour travailler en mémoirec
+// const dbName =  ':memory:';
 
 const createDataBase = ()=> new Promise((resolve, reject)=>{
     const db = new sqlite3.Database(dbName,(err)=>{
@@ -441,18 +440,16 @@ const populateBeer = (db) => new Promise((resolve, reject) =>{
 
 const init =  new Promise((resolve, reject) => {
     createDataBase()
-        .then(db => createTable(db))
-        .then(db => populateCategorie(db))
-        .then(db => populateStyle(db))
-        .then(db => populateBrewery(db))
-        .then(db => populateGeocode(db))
-        .then(db => populateBeer(db))
+        // .then(db => createTable(db))
+        // .then(db => populateCategorie(db))
+        // .then(db => populateStyle(db))
+        // .then(db => populateBrewery(db))
+        // .then(db => populateGeocode(db))
+        // .then(db => populateBeer(db))
         .then(db => {
             module.exports.db = db;
             resolve(db)});
 });
-
-
 
 module.exports.init = init;
 
