@@ -18,7 +18,7 @@
     background: white;
     border-radius: 10px;
     overflow: hidden;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
 }
 
 #SearchBar .SearchBarInput {
@@ -37,9 +37,9 @@
 #SearchBar .SearchBarInput input {
     flex: 1;
     border: 0;
-    font-size: 14px;
+    font-size: 16px;
     outline: none;
-    padding: 10px 15px;
+    padding: 15px;
 }
 
 #SearchBar .SearchBarItem {

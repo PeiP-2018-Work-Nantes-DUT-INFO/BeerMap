@@ -1,0 +1,10 @@
+function findAllByBrewery(id) {
+    return new Promise((resolve, reject) => {
+        fetch(`http://${window.location.hostname}:3000/api/beer/brewery/${id}`)
+            .then(data => data.json())
+            .then(data => resolve(data))
+            .catch(err => reject(err))
+    })
+}
+
+export default { findAllByBrewery }

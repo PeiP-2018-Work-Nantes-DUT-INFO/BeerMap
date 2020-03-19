@@ -100,9 +100,9 @@ export default class CityBar extends React.Component {
 							)
 						})}
 
-						{this.state.breweries.length == 0 ?
-								<div class="zero">Aucune brasserie trouvée.</div>
-								: null
+						{this.state.breweries.length === 0 ?
+							<div className="zero">Aucune brasserie trouvée.</div>
+							: null
 						}
 
 					</div>

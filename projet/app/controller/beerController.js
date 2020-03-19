@@ -37,6 +37,19 @@ class BeerController {
         }
     };
 
+    findAllByBrewery(req, res) {
+        try {
+            let brewery_id = req.params.brewery_id;
+            this.beerDAO.findAllByBrewery(brewery_id)
+                .then(this.common.findSuccess(res))
+                .catch(this.common.findError(res));
+        }
+        catch (err) {
+            res.status(err.errorCode);
+            res.json(err);
+        }
+    }
+
     findByName(req, res) {
         let name = req.params.name;
         this.beerDAO.findByName(name)

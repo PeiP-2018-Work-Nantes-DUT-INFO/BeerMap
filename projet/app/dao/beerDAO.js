@@ -31,6 +31,18 @@ class BeerDAO {
             .then(row => new Beer(row))
             .catch(err => err);
     };
+
+    findAllByBrewery(brewery_id) {
+        brewery_id = parseInt(brewery_id);
+        if(isNaN(brewery_id)){
+            throw new DaoError(400, "Integer required");
+        }
+        let sqlRequest = "SELECT * FROM beer WHERE brewery_id=$brewery_id";
+        let sqlParams = {$brewery_id: brewery_id};
+        return this.common.findAllWithParams(sqlRequest, sqlParams)
+            .then(row => row.map(beer => new Beer(beer)))
+            .catch(err => err);
+    }
     
     findByName(name) {
         let sqlRequest = "SELECT * FROM beer WHERE name = $name COLLATE NOCASE"

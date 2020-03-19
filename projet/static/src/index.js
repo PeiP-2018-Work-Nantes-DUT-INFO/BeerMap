@@ -4,6 +4,7 @@ import './index.css';
 
 import SearchBar from './Component/SearchBar/SearchBar';
 import CityBar from './Component/CityBar/CityBar';
+import BreweryBar from './Component/BreweryBar/BreweryBar';
 
 import Brewerie from './API/Brewerie';
 
@@ -25,6 +26,7 @@ class App extends React.Component {
 		}
 
 		this.CityBar = React.createRef()
+		this.BreweryBar = React.createRef()
 		this.map_ref = React.createRef()
 	}
 
@@ -57,16 +59,21 @@ class App extends React.Component {
 	}
 
 	onBreweryClick = props => {
-		const properties = props.feature.properties;
-		const coordinates = properties.coordinates.split(",");
-		this.setMapCenter(coordinates[1], coordinates[0]);
+		const info = props.feature.properties;
+
+		const [y, x] = info.coordinates.split(",");
+
+		this.setMapCenter(x, y);
+
 		const ville = {
 			location: {
-				x:coordinates[1],
-				y:coordinates[0]
+				x: x,
+				y: y
 			},
-			address: properties.city
+			address: info.city
 		}
+
+		this.BreweryBar.current.open({info});
 
 		this.CityBar.current.open({ville});
 	}
@@ -78,6 +85,8 @@ class App extends React.Component {
 				<SearchBar closeCity={this.closeCity} onSearchResultClick={this.onSearchResultClick} />
 
 				<CityBar ref={this.CityBar} />
+
+				<BreweryBar ref={this.BreweryBar} />
 
 				<Map
 					style="mapbox://styles/mapbox/streets-v9"

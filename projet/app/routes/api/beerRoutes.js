@@ -19,6 +19,11 @@ router.get('/name/:name', function (req, res) {
     beerController.findByName(req, res);
 });
 
+// Les bières d'une certaine brasserie
+router.get('/brewery/:brewery_id', function (req, res) {
+    beerController.findAllByBrewery(req, res);
+});
+
 // Les bières ayant un volume supérieur ou égal au volume en paramètre
 router.get('/min-volume/:volume', function (req, res) {
     beerController.findByVolumeHigherThan(req, res);
