@@ -38,7 +38,6 @@ class App extends React.Component {
 
 	setMapCenter(lon, lat) {
 		this.setState({ center: [lon, lat], zoom: 11 })
-		this.forceUpdate()
 	}
 
 	onSearchResultClick = search_val => {
@@ -57,12 +56,19 @@ class App extends React.Component {
 		this.CityBar.current.close()
 	}
 
-
 	onBreweryClick = props => {
-		let properties = props.feature.properties;
-		let id = properties.bid;
-		let coordinates = properties.coordinates;
-		console.log(props)
+		const properties = props.feature.properties;
+		const coordinates = properties.coordinates.split(",");
+		this.setMapCenter(coordinates[1], coordinates[0]);
+		const ville = {
+			location: {
+				x:coordinates[1],
+				y:coordinates[0]
+			},
+			address: properties.city
+		}
+
+		this.CityBar.current.open({ville});
 	}
 
 	render() {

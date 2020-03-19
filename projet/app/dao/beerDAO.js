@@ -84,7 +84,7 @@ class BeerDAO {
     findByCity(city) {
         let sqlRequest = "SELECT * FROM beer WHERE city = $city COLLATE NOCASE";
         let sqlParams = {$city: city};
-        return this.common.findOne(sqlRequest, sqlParams)
+        return this.common.findAllWithParams(sqlRequest, sqlParams)
             .then(row => row.map(beer => new Beer(beer)))
             .catch(err => err);
     };

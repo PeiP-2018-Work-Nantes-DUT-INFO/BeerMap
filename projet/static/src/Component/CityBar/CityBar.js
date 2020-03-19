@@ -3,6 +3,7 @@ import React from 'react';
 import "./CityBar.css"
 
 import Weather from "../../API/Weather"
+import Brewerie from '../../API/Brewerie';
 
 import { X, Home, ChevronRight, Compass } from 'react-feather';
 
@@ -48,8 +49,16 @@ export default class CityBar extends React.Component {
 	open = ({ville}) => {
 
 		if(ville !== undefined){
-			this.setState({ ville: ville }, this.searchWeather)
+
+			this.setState({ ville: ville }, _ => {
+				Brewerie.findAllByCity(this.state.ville.address.split(",")[0]).then(data=> {
+					this.setState({breweries: (Array.isArray(data) && data) || []})
+				})
+				this.searchWeather()
+			})
 		}
+
+
 
 		this.setState({ hidden: false, hasSearched: true })
 	}
@@ -57,7 +66,7 @@ export default class CityBar extends React.Component {
 	render() {
 		return (
 			<>
-				<div id="CityBar" className={this.state.hidden && "hidden"}>
+				<div id="CityBar" className={this.state.hidden ? "hidden":null}>
 					<div className="CityBarTitle">
 						<Compass size={25} />
 						<span className="Title">{this.state.ville.address.split(",")[0]}</span>
@@ -83,13 +92,18 @@ export default class CityBar extends React.Component {
 								<a key={i} href={"#brewerie-"+brewerie.id} className="Brewerie">
 									<div className="left">
 										<Home size={25}/>
-										{brewerie.name}
+										{brewerie.breweries}
 									</div>
 
 									<ChevronRight size={24} />
 								</a>
 							)
 						})}
+
+						{this.state.breweries.length == 0 ?
+								<div class="zero">Aucune brasserie trouvée.</div>
+								: null
+						}
 
 					</div>
 

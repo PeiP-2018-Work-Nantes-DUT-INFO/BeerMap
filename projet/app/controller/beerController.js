@@ -15,6 +15,10 @@ class BeerController {
 
 
     findAll(req, res) {
+
+
+        //  /api/beer/?imageRequired=true&locationRequired=true
+
         this.beerDAO.findAll()
             .then(this.common.findSuccess(res))
             .catch(this.common.findError(res));

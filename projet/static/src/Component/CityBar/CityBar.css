@@ -25,6 +25,7 @@
     width: 100%;
     padding: 25px;
     box-sizing: border-box;
+    text-align: center;
 }
 
 #CityBar .CityBarTitle .Title {
@@ -45,8 +46,6 @@
     margin: 0;
     box-sizing: border-box;
     border-top: 1px solid rgba(0,0,0,.15);
-
-    margin-bottom: 15px;
 }
 
 #CityBar .Weather {
@@ -105,10 +104,12 @@
 #CityBar .Breweries {
     display: flex;
     flex-direction: column;
-    overflow-y: scroll;
+    overflow-y: auto;
     width: 100%;
     height: fit-content;
     max-height: 20vh;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 #CityBar .Breweries .Brewerie {
@@ -135,8 +136,9 @@
 }
 
 
-
-
+#CityBar .zero {
+    margin-left: 25px;
+}
 
 
 #OpenCityBar {

@@ -57,9 +57,6 @@ export default class SearchBar extends React.Component {
 
 	componentDidMount() {
 		searchResult(data => {
-
-			console.log(data)
-
 			var city = Array.isArray(data.city) ? data.city.map(el => { el.type = "city"; return el }) : []
 			var beer = Array.isArray(data.beer) ? data.beer.map(el => { el.type = "beer"; return el }) : []
 			var brewery = Array.isArray(data.brewery) ? data.brewery.map(el => { el.type = "brewery"; return el }) : []

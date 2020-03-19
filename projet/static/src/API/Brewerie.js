@@ -7,4 +7,13 @@ function findAll() {
     })
 }
 
-export default { findAll }
+function findAllByCity(name) {
+    return new Promise((resolve, reject) => {
+        fetch(`http://${window.location.hostname}:3000/api/brewery/city/${name}`)
+            .then(data => data.json())
+            .then(data => resolve(data))
+            .catch(err => reject(err))
+    })
+}
+
+export default { findAll, findAllByCity }
