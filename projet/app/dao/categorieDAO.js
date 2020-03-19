@@ -35,12 +35,19 @@ class CategorieDAO {
             .catch(err => err);
     };
     findByName(name) {
-        let sqlRequest = "SELECT * FROM categorie WHERE cat_name=$name";
+        let sqlRequest = "SELECT * FROM categorie WHERE cat_name=$name COLLATE NOCASE";
         let sqlParams = {$name: name};
         return this.common.findOne(sqlRequest, sqlParams)
             .then(row => new Categorie(row))
             .catch(err => err);
     };
+
+    findAllByName(name){
+        let sqlRequest = "SELECT * FROM categorie WHERE UPPER(cat_name) LIKE '%"+name+"%' ORDER BY cat_name ASC LIMIT 5"
+        return this.common.findAll(sqlRequest)
+            .then(row => row.map(beer => new Categorie(beer)))
+            .catch(err => err);
+    }
 
     create(categorie) {
         const sqlRequest = "INSERT INTO categorie(" +

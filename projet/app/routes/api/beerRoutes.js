@@ -39,4 +39,8 @@ router.get('/city/:city', function (req, res) {
     beerController.findByCity(req, res);
 });
 
+// Les bières d'une certaine catégorie
+router.get('/categorie/:categorie', function (req, res) {
+    beerController.findByCategory(req, res);
+});
 module.exports = router;

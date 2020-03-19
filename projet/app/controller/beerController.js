@@ -79,6 +79,13 @@ class BeerController {
             .then(this.common.findSuccess(res))
             .catch(this.common.findError(res));
     };
+
+    findByCategory(req, res) {
+        let categorie = req.params.categorie;
+        this.beerDAO.findByCategory(categorie)
+            .then(this.common.findSuccess(res))
+            .catch(this.common.findError(res));
+    };
 }
 
 

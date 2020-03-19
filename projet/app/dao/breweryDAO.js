@@ -14,14 +14,17 @@ class BreweryDAO {
 
     findAll() {
         const sqlRequest = "SELECT * FROM brewery";
-
         return this.common.findAll(sqlRequest)
-            .then(rows => {
-                const breweries = rows.map(row => new Brewery(row));
-                return breweries;
-            })
+            .then(rows => rows.map(row => new Brewery(row)))
             .catch(err => err);
     };
+
+    findAllByName(name){
+        let sqlRequest = "SELECT * FROM brewery WHERE UPPER(breweries) LIKE '%"+name+"%' ORDER BY breweries ASC LIMIT 5"
+        return this.common.findAll(sqlRequest)
+            .then(row => row.map(beer => new Brewery(beer)))
+            .catch(err => err);
+    }
 
     findById(id) {
         id = parseInt(id); // on vérifie que l'id fourni peut bien être casté en entier
@@ -37,7 +40,7 @@ class BreweryDAO {
     };
 
     findByName(name) {
-        let sqlRequest = "SELECT * FROM brewery WHERE breweries=$name";
+        let sqlRequest = "SELECT * FROM brewery WHERE breweries=$name COLLATE NOCASE";
         let sqlParams = {$name: name};
         return this.common.findOne(sqlRequest, sqlParams)
             .then(row => new Brewery(row))
@@ -46,27 +49,13 @@ class BreweryDAO {
 
     findAllByCity(city) {
         let sqlParams = {$city: city};
-        const sqlRequest = "SELECT * FROM brewery WHERE city = $city";
+        const sqlRequest = "SELECT * FROM brewery WHERE city = $city COLLATE NOCASE";
 
-        return this.common.findAllWithParams(sqlRequest,sqlParams)
-            .then(rows => {
-                const breweries = rows.map(row => new Brewery(row));
-                return breweries;
-            })
+        return this.common.findOne(sqlRequest,sqlParams)
+            .then(rows => rows.map(row => new Brewery(row)))
             .catch(err => err);
     };
-
-    findInZone(zone){
         
-        let sqlParams = {$city: city};
-        const sqlRequest = "SELECT * FROM brewery WHERE city = $city";
-        return this.common.findAllWithParams(sqlRequest,sqlParams)
-            .then(rows => {
-                const breweries = rows.map(row => new Brewery(row));
-                return breweries;
-            })
-            .catch(err => err);
-    };
 }
 
 module.exports = BreweryDAO;

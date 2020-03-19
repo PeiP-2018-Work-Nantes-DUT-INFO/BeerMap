@@ -5,11 +5,9 @@ import './index.css';
 import SearchBar from './Component/SearchBar/SearchBar';
 import CityBar from './Component/CityBar/CityBar';
 
-import IP from './API/IP';
 import Brewerie from './API/Brewerie';
 
-import ReactMapboxGl, { Layer, Marker, Popup } from 'react-mapbox-gl';
-import { search } from './API/Search';
+import ReactMapboxGl, { Layer, Feature } from 'react-mapbox-gl';
 
 const Map = ReactMapboxGl({
 	accessToken: 'pk.eyJ1IjoidGhlbmF0aGFuMzAiLCJhIjoiY2ozazU2MGtvMDAyYTJ3anZ1N21zY2preCJ9.FAwz_TGb' +
@@ -21,41 +19,59 @@ class App extends React.Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			center: [0.0, 0.0],
-			zoom: 11
+			center: [2, 47],
+			zoom: 5,
+			brewerie: []
 		}
 
+		this.CityBar = React.createRef()
 		this.map_ref = React.createRef()
 	}
 
 	componentDidMount() {
-		IP.getIpLocation().then(data => {
-			this.setMapCenter(data.lon, data.lat)
+		Brewerie.findAll().then(data => {
+			this.setState({brewerie: data.slice(1)})
 		}).catch(err => {
-			console.error("Erreur lors de l'obtention de la position géographique du client")
+			console.error(err)
 		})
 	}
 
 	setMapCenter(lon, lat) {
 		this.setState({ center: [lon, lat], zoom: 11 })
+		this.forceUpdate()
 	}
 
 	onSearchResultClick = search_val => {
+		this.CityBar.current.open({ville: search_val})
+
 		switch (search_val.type) {
 			case "city":
 				this.setMapCenter(search_val.location.x, search_val.location.y)
 				break;
+			default:
+				console.log(search_val.type)
 		}
 	}
 
+	closeCity = _ => {
+		this.CityBar.current.close()
+	}
+
+
+	onBreweryClick = props => {
+		let properties = props.feature.properties;
+		let id = properties.bid;
+		let coordinates = properties.coordinates;
+		console.log(props)
+	}
+
 	render() {
-		console.log(this.map_ref)
 		return (
 			<div className="AppBlock">
 
-				<SearchBar onSearchResultClick={this.onSearchResultClick} />
+				<SearchBar closeCity={this.closeCity} onSearchResultClick={this.onSearchResultClick} />
 
-				<CityBar />
+				<CityBar ref={this.CityBar} />
 
 				<Map
 					style="mapbox://styles/mapbox/streets-v9"
@@ -67,19 +83,17 @@ class App extends React.Component {
 						width: "100%",
 						height: "100%"
 					}}>
-					<Popup
-						coordinates={[-0.13235092163085938, 51.518250335096376]}
-						offset={{
-							'bottom-left': [12, -38], 'bottom': [0, -38], 'bottom-right': [-12, -38]
-						}}>
-						<h1>Popup</h1>
-					</Popup>
 
-					<Marker
-						coordinates={[-0.2416815, 51.5285582]}
-						anchor="bottom">
-						<img src={"pin.png"} />
-					</Marker>
+					<Layer
+						type="symbol"
+						layout={{ "icon-image": "beer-15" }}>
+
+							{this.state.brewerie.map((el, i) => {
+								return <Feature key={i} onClick={this.onBreweryClick} properties={el} coordinates={[el.coordinates.split(",")[1], el.coordinates.split(",")[0]]}  />
+							})}
+
+					</Layer>
+					
 				</Map>
 			</div>
 		)

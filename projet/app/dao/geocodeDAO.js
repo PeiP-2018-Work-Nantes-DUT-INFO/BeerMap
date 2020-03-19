@@ -16,10 +16,7 @@ class GeocodeDAO {
         const sqlRequest = "SELECT * FROM geocode";
 
         return this.common.findAll(sqlRequest)
-            .then(rows => {
-                const geocodes = rows.map(row => new Geocode(row));
-                return geocodes;
-            })
+            .then(rows => rows.map(row => new Geocode(row)))
             .catch(err => err);
     };
 
@@ -51,7 +48,7 @@ class GeocodeDAO {
 
     findByBreweryName(name) {
         let sqlParams = {$name: name};
-        let sqlRequest = "SELECT g.id, g.brewery_id, g.latitude, g.longitude, g.accuracy, g.coordinates FROM geocode g, brewery b WHERE g.brewery_id = b.id AND b.breweries = $name";
+        let sqlRequest = "SELECT g.id, g.brewery_id, g.latitude, g.longitude, g.accuracy, g.coordinates FROM geocode g, brewery b WHERE g.brewery_id = b.id AND b.breweries = $name COLLATE NOCASE";
         return this.common.findOne(sqlRequest, sqlParams)
             .then(row => new Geocode(row))
             .catch(err => err);        
