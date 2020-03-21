@@ -5,6 +5,7 @@ import './index.css';
 import SearchBar from './Component/SearchBar/SearchBar';
 import CityBar from './Component/CityBar/CityBar';
 import BreweryBar from './Component/BreweryBar/BreweryBar';
+import CategoryBar from './Component/CategoryBar/CategoryBar';
 
 import Brewerie from './API/Brewerie';
 
@@ -27,6 +28,7 @@ class App extends React.Component {
 
 		this.CityBar = React.createRef()
 		this.BreweryBar = React.createRef()
+		this.CategoryBar = React.createRef()
 		this.map_ref = React.createRef()
 	}
 
@@ -43,11 +45,17 @@ class App extends React.Component {
 	}
 
 	onSearchResultClick = search_val => {
-		this.CityBar.current.open({ville: search_val})
 
 		switch (search_val.type) {
 			case "city":
+				this.CityBar.current.open({ville: search_val})
 				this.setMapCenter(search_val.location.x, search_val.location.y)
+				break;
+			case "category":
+				this.CategoryBar.current.open({info: search_val});
+				break;
+			case "brewery":
+				this.BreweryBar.current.open({info: search_val});
 				break;
 			default:
 				console.log(search_val.type)
@@ -87,6 +95,8 @@ class App extends React.Component {
 				<CityBar ref={this.CityBar} />
 
 				<BreweryBar ref={this.BreweryBar} />
+
+				<CategoryBar ref={this.CategoryBar} />
 
 				<Map
 					style="mapbox://styles/mapbox/streets-v9"

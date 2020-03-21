@@ -34,7 +34,7 @@ export default class BreweryBar extends React.Component {
 		if(info !== undefined){
 
 			this.setState({
-				bid: info.bid,
+				bid: info.id,
 				name: info.breweries,
 				address: info.address1 + " " + info.address2,
 				city: (info.code ? info.code + " " : "") + info.city,
@@ -43,7 +43,7 @@ export default class BreweryBar extends React.Component {
 				phone: info.phone,
 				website: info.website,
 			}, _ => {
-				Beer.findAllByBrewery(info.bid).then(beers=> {
+				Beer.findAllByBrewery(info.id).then(beers=> {
 					console.log(beers)
 					this.setState({beers})
 				})

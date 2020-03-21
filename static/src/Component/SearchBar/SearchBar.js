@@ -84,7 +84,7 @@ export default class SearchBar extends React.Component {
 	}
 
 	onSearch = e => {
-		if (e.charCode === 13 && this.input.current.value.length > 4) {
+		if (e.charCode === 13 && this.input.current.value.length > 3) {
 
 			this.props.closeCity()
 
