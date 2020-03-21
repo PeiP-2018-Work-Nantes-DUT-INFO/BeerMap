@@ -44,7 +44,6 @@ export default class BreweryBar extends React.Component {
 				website: info.website,
 			}, _ => {
 				Beer.findAllByBrewery(info.id).then(beers=> {
-					console.log(beers)
 					this.setState({beers})
 				})
 			})

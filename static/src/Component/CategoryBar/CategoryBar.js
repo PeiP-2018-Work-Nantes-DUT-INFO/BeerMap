@@ -29,13 +29,8 @@ export default class CategoryBar extends React.Component {
 			this.setState({
 				name: info.cat_name,
 			}, _ => {
-				console.log('-----')
 				Beer.findAllByCategory(info.cat_name).then(beers=> {
-					console.log(beers)
 					this.setState({beers})
-				})
-				.catch(err => {
-					console.error(err)
 				})
 			})
 		}
@@ -59,7 +54,7 @@ export default class CategoryBar extends React.Component {
 
 						{this.state.beers.map((beer, i) => {
 							return(
-								<a key={i} href={"#categorie"+beer.id} className="Beer">
+								<a key={i} href={"#beer"+beer.id} className="Beer">
 									<div className="left">
 										<Droplet size={25}/>
 										{beer.name}
