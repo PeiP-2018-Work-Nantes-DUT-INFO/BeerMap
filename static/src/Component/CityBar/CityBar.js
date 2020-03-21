@@ -4,7 +4,7 @@ import "./CityBar.css"
 
 import Weather from "../../API/Weather"
 import Brewerie from '../../API/Brewerie';
-
+import BreweryBar from "../BreweryBar/BreweryBar";
 import { X, Home, ChevronRight, Compass } from 'react-feather';
 
 export default class CityBar extends React.Component {
@@ -26,6 +26,8 @@ export default class CityBar extends React.Component {
 			},
 			hasSearched:false
 		}
+		
+		this.BreweryBar = React.createRef()
 	}
 
 	searchWeather = _ => {
@@ -66,6 +68,7 @@ export default class CityBar extends React.Component {
 	render() {
 		return (
 			<>
+			<BreweryBar ref={this.BreweryBar} />
 				<div id="CityBar" className={this.state.hidden ? "hidden":null}>
 					<div className="CityBarTitle">
 						<Compass size={25} />
@@ -89,7 +92,8 @@ export default class CityBar extends React.Component {
 
 						{this.state.breweries.map((brewerie, i) => {
 							return(
-								<a key={i} href={"#brewerie-"+brewerie.id} className="Brewerie">
+								<a key={i} onClick={() => this.BreweryBar.current.open({info: brewerie})} href={"#brewerie-"+brewerie.id} className="Brewerie">
+
 									<div className="left">
 										<Home size={25}/>
 										{brewerie.breweries}
