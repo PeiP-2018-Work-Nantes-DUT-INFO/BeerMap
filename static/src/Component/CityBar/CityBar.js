@@ -43,8 +43,12 @@ export default class CityBar extends React.Component {
 			})
 	}
 
-	close = _ => {
+	close = def => {
 		this.setState({ hidden: true })
+	
+		if(def === true){
+			this.setState({ hasSearched: false })
+		}
 	}
 
 	open = ({ville}) => {

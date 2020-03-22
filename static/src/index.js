@@ -43,7 +43,6 @@ class App extends React.Component {
 	}
 
 	onSearchResultClick = search_val => {
-
 		switch (search_val.type) {
 			case "city":
 				this.CityBar.current.open({ville: search_val})
@@ -61,9 +60,9 @@ class App extends React.Component {
 	}
 
 	closeBlock = _ => {
-		this.CityBar.current.close()
-		this.CategoryBar.current.close()
-		this.BreweryBar.current.close()
+		this.CityBar.current.close(true)
+		this.CategoryBar.current.close(true)
+		this.BreweryBar.current.close(true)
 	}
 
 	onBreweryClick = props => {

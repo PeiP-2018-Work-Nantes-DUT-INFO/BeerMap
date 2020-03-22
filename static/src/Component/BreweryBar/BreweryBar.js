@@ -25,8 +25,12 @@ export default class BreweryBar extends React.Component {
 		}
 	}
 
-	close = _ => {
+	close = def => {
 		this.setState({ hidden: true })
+	
+		if(def === true){
+			this.setState({ hasSearched: false })
+		}
 	}
 
 	open = ({info}) => {
@@ -47,7 +51,7 @@ export default class BreweryBar extends React.Component {
 					this.setState({beers})
 				})
 			})
-			
+
 		}
 
 		this.setState({ hidden: false, hasSearched: true })
