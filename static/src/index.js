@@ -12,8 +12,7 @@ import Brewerie from './API/Brewerie';
 import ReactMapboxGl, { Layer, Feature } from 'react-mapbox-gl';
 
 const Map = ReactMapboxGl({
-	accessToken: 'pk.eyJ1IjoidGhlbmF0aGFuMzAiLCJhIjoiY2ozazU2MGtvMDAyYTJ3anZ1N21zY2preCJ9.FAwz_TGb' +
-		'KlqROzSbx7qbww'
+	accessToken: 'pk.eyJ1IjoidGhlbmF0aGFuMzAiLCJhIjoiY2ozazU2MGtvMDAyYTJ3anZ1N21zY2preCJ9.FAwz_TGbKlqROzSbx7qbww'
 });
 
 class App extends React.Component {
@@ -29,7 +28,6 @@ class App extends React.Component {
 		this.CityBar = React.createRef()
 		this.BreweryBar = React.createRef()
 		this.CategoryBar = React.createRef()
-		this.map_ref = React.createRef()
 	}
 
 	componentDidMount() {
@@ -40,7 +38,7 @@ class App extends React.Component {
 		})
 	}
 
-	setMapCenter(lon, lat) {
+	setMapCenter = (lon, lat) => {
 		this.setState({ center: [lon, lat], zoom: 11 })
 	}
 
@@ -62,8 +60,10 @@ class App extends React.Component {
 		}
 	}
 
-	closeCity = _ => {
+	closeBlock = _ => {
 		this.CityBar.current.close()
+		this.CategoryBar.current.close()
+		this.BreweryBar.current.close()
 	}
 
 	onBreweryClick = props => {
@@ -90,9 +90,9 @@ class App extends React.Component {
 		return (
 			<div className="AppBlock">
 
-				<SearchBar closeCity={this.closeCity} onSearchResultClick={this.onSearchResultClick} />
+				<SearchBar closeBlock={this.closeBlock} onSearchResultClick={this.onSearchResultClick} />
 
-				<CityBar ref={this.CityBar} />
+				<CityBar ref={this.CityBar} setMapCenter={this.setMapCenter} />
 
 				<BreweryBar ref={this.BreweryBar} />
 
@@ -102,7 +102,6 @@ class App extends React.Component {
 					style="mapbox://styles/mapbox/streets-v9"
 					center={this.state.center}
 					zoom={[this.state.zoom]}
-					ref={this.map_ref}
 					containerStyle={{
 						display: "block",
 						width: "100%",

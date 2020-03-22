@@ -52,6 +52,10 @@ export default class BreweryBar extends React.Component {
 		this.setState({ hidden: false, hasSearched: true })
 	}
 
+	onBeerClick = beer => {
+		console.log(beer)
+	}
+
 	render() {
 		return (
 			<>
@@ -94,9 +98,9 @@ export default class BreweryBar extends React.Component {
 
 					<div className="Beers">
 
-						{this.state.beers.map((beer, i) => {
+						{this.state.beers && this.state.beers.map((beer, i) => {
 							return(
-								<a key={i} href={"#brewerie-"+beer.id} className="Beer">
+								<a key={i} onClick={_ => this.onBeerClick(beer)} href={"#beer-"+beer.id} className="Beer">
 									<div className="left">
 										<Droplet size={25}/>
 										{beer.name}

@@ -2,45 +2,12 @@ import React from 'react';
 import { searchResult, search } from "../../API/Search";
 
 import "./SearchBar.css"
-import { Search, X, Droplet, Home, Compass } from 'react-feather';
+import { Search, X } from 'react-feather';
 
-function CityResult(props) {
-	return (
-		<a href={"#search" + props.address} onClick={_ => props.onClick(props)} className="SearchBarItem City">
-			<Compass size={25} />
-			<span className="SubTitle">Ville :</span>
-			<span className="Value">{props.address}</span>
-		</a>
-	)
-}
-function BeerResult(props) {
-	return (
-		<a href={"#search" + props.name} onClick={_ => props.onClick(props)} className="SearchBarItem Beer">
-			<Droplet size={25} />
-			<span className="SubTitle">Bière :</span>
-			<span className="Value">{props.name}</span>
-		</a>
-	)
-}
-function BreweryResult(props) {
-	return (
-		<a href={"#search" + props.breweries} onClick={_ => props.onClick(props)} className="SearchBarItem Brewery">
-			<Home size={25} />
-			<span className="SubTitle">Brasserie :</span>
-			<span className="Value">{props.breweries}</span>
-		</a>
-	)
-}
-
-function CategoryResult(props) {
-	return (
-		<a href={"#search" + props.cat_name} onClick={_ => props.onClick(props)} className="SearchBarItem Category">
-			<Home size={25} />
-			<span className="SubTitle">Catégorie :</span>
-			<span className="Value">{props.cat_name}</span>
-		</a>
-	)
-}
+import BeerResult from "./Result/BeerResult"
+import BreweryResult from "./Result/BreweryResult"
+import CategoryResult from "./Result/CategoryResult"
+import CityResult from "./Result/CityResult"
 
 export default class SearchBar extends React.Component {
 
@@ -86,14 +53,13 @@ export default class SearchBar extends React.Component {
 	onSearch = e => {
 		if (e.charCode === 13 && this.input.current.value.length > 3) {
 
-			this.props.closeCity()
+			this.props.closeBlock()
 
 			search(this.input.current.value);
 		}
 	}
 
 	onSearchResultClick = data => {
-
 		this.clear()
 
 		this.props.onSearchResultClick(data)
@@ -119,21 +85,20 @@ export default class SearchBar extends React.Component {
 				</div>
 
 				{
-					this.state.result
-						.map((item, i) => {
-							switch (item.type) {
-								case "city":
-									return <CityResult onClick={this.onSearchResultClick} key={"res" + i} {...item} />
-								case "beer":
-									return <BeerResult onClick={this.onSearchResultClick} key={"res" + i} {...item} />
-								case "brewery":
-									return <BreweryResult onClick={this.onSearchResultClick} key={"res" + i} {...item} />
-								case "category":
-									return <CategoryResult onClick={this.onSearchResultClick} key={"res" + i} {...item} />
-								default:
-									return null
-							}
-						})
+					this.state.result.map((item, i) => {
+						switch (item.type) {
+							case "city":
+								return <CityResult onClick={this.onSearchResultClick} key={"res" + i} {...item} />
+							case "beer":
+								return <BeerResult onClick={this.onSearchResultClick} key={"res" + i} {...item} />
+							case "brewery":
+								return <BreweryResult onClick={this.onSearchResultClick} key={"res" + i} {...item} />
+							case "category":
+								return <CategoryResult onClick={this.onSearchResultClick} key={"res" + i} {...item} />
+							default:
+								return null
+						}
+					})
 				}
 			</div>
 		)

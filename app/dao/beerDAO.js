@@ -104,8 +104,7 @@ class BeerDAO {
     findByCategory(categorie) {
         let sqlRequest = `SELECT b.name, b.id, b.brewery_id, b.cat_id, b.style_id, b.alcohol_by_volume, b.international_bitterness_units, 
         b.standard_reference_method, b.universal_product_code, b.filepath, b.description, b.add_user, b.last_mod,b.style,b.category,b.brewer,
-        b.address, b.city, b.state, b.country, b.coordinates, b.website FROM beer b, categorie c WHERE b.cat_id = c.id AND c.cat_name = $categorie COLLATE NOCASE
-        `;
+        b.address, b.city, b.state, b.country, b.coordinates, b.website FROM beer b, categorie c WHERE b.cat_id = c.id AND b.cat_id = $categorie`;
         let sqlParams = {$categorie: categorie};
         return this.common.findAllWithParams(sqlRequest, sqlParams)
             .then(row => row.map(beer => new Beer(beer)))

@@ -13,8 +13,7 @@ export default class CategoryBar extends React.Component {
 		this.state = {
 			hidden: true,
 			name: "",
-			beers: [],
-			hasSearched: false
+			beers: []
 		}
 	}
 
@@ -25,17 +24,18 @@ export default class CategoryBar extends React.Component {
 	open = ({info}) => {
 
 		if(info !== undefined){
-
+			console.log(info)
 			this.setState({
 				name: info.cat_name,
 			}, _ => {
-				Beer.findAllByCategory(info.cat_name).then(beers=> {
+				Beer.findAllByCategory(info.id).then(beers=> {
 					this.setState({beers})
+					console.log(beers)
 				})
 			})
 		}
 
-		this.setState({ hidden: false, hasSearched: true })
+		this.setState({ hidden: false })
 	}
 
 	render() {
@@ -52,7 +52,7 @@ export default class CategoryBar extends React.Component {
 
 					<div className="Beers">
 
-						{this.state.beers.map((beer, i) => {
+						{Array.isArray(this.state.beers) && this.state.beers.map((beer, i) => {
 							return(
 								<a key={i} href={"#beer"+beer.id} className="Beer">
 									<div className="left">
@@ -73,13 +73,7 @@ export default class CategoryBar extends React.Component {
 					</div>
 
 				</div>
-				{	this.state.hasSearched ?
-						<div id="OpenCategoryBar" onClick={this.open} className={this.state.hidden ? "" : "hidden"}>
-							Afficher les informations sur la catégorie
-						</div>
-					: null
-				}
-				
+
 			</>
     	)
 	}

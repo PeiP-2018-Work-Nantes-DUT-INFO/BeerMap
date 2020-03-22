@@ -60,9 +60,15 @@ export default class CityBar extends React.Component {
 			})
 		}
 
-
-
 		this.setState({ hidden: false, hasSearched: true })
+	}
+
+	onBreweryClick = brewery => {
+		this.BreweryBar.current.open({info: brewery})
+
+		const [y, x] = brewery.coordinates.split(",");
+
+		this.props.setMapCenter(x, y)
 	}
 
 	render() {
@@ -90,13 +96,13 @@ export default class CityBar extends React.Component {
 
 					<div className="Breweries">
 
-						{this.state.breweries.map((brewerie, i) => {
+						{this.state.breweries.map((brewery, i) => {
 							return(
-								<a key={i} onClick={() => this.BreweryBar.current.open({info: brewerie})} href={"#brewerie-"+brewerie.id} className="Brewerie">
+								<a key={i} onClick={() => this.onBreweryClick(brewery)} href={"#brewery-"+brewery.id} className="Brewerie">
 
 									<div className="left">
 										<Home size={25}/>
-										{brewerie.breweries}
+										{brewery.breweries}
 									</div>
 
 									<ChevronRight size={24} />
