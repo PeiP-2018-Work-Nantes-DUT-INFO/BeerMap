@@ -1,0 +1,89 @@
+#BeerCard {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 50;
+    background: rgba(0, 0, 0, .5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#BeerCard.hidden {
+    display: none;
+}
+
+#BeerCard .inside {
+    display: flex;
+    flex-direction: column;
+    background: white;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, .5);
+    max-width: 700px;
+    border-radius: 10px;
+    padding: 15px;
+}
+
+#BeerCard .left,
+#BeerCard .top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#BeerCard .top {
+    width: 100%;
+}
+
+#BeerCard .top .Title {
+    color: black;
+    font-size: 20px;
+    font-weight: 800;
+    margin-left: 10px;
+}
+
+#BeerCard .top svg {
+    cursor: pointer;
+}
+
+
+
+
+#BeerCard .main {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 25px 0;
+}
+
+#BeerCard .main .image {
+    display: flex;
+    max-height: 250px;
+    max-width: 100px;
+    padding: 0 50px;
+}
+
+#BeerCard .main .image img {
+    flex: 1;
+    object-fit: contain;
+}
+
+#BeerCard .main .info .line {
+    margin: 20px 0;
+    text-align: justify;
+}
+
+#BeerCard .main .info .line .title {
+    font-weight: bold;
+    padding-right: 5px;
+}
+
+#BeerCard .main .info .line.link {
+    cursor: pointer;
+}
+
+#BeerCard .main .info .line.link:hover {
+    text-decoration: underline;
+    color: blue;
+}

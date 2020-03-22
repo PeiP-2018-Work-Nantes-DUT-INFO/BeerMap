@@ -6,6 +6,7 @@ import SearchBar from './Component/SearchBar/SearchBar';
 import CityBar from './Component/CityBar/CityBar';
 import BreweryBar from './Component/BreweryBar/BreweryBar';
 import CategoryBar from './Component/CategoryBar/CategoryBar';
+import BeerCard from './Component/BeerCard/BeerCard';
 
 import Brewerie from './API/Brewerie';
 
@@ -28,6 +29,7 @@ class App extends React.Component {
 		this.CityBar = React.createRef()
 		this.BreweryBar = React.createRef()
 		this.CategoryBar = React.createRef()
+		this.BeerCard = React.createRef()
 	}
 
 	componentDidMount() {
@@ -54,6 +56,8 @@ class App extends React.Component {
 			case "brewery":
 				this.BreweryBar.current.open({info: search_val});
 				break;
+			case "beer":
+				this.onBeerClick(search_val)
 			default:
 				console.log(search_val.type)
 		}
@@ -85,17 +89,23 @@ class App extends React.Component {
 		this.CityBar.current.open({ville});
 	}
 
+	onBeerClick = beer => {
+		this.BeerCard.current.open(beer)
+	} 
+
 	render() {
 		return (
 			<div className="AppBlock">
 
-				<SearchBar closeBlock={this.closeBlock} onSearchResultClick={this.onSearchResultClick} />
+				<SearchBar closeBlock={this.closeBlock} onBeerClick={this.onBeerClick} onSearchResultClick={this.onSearchResultClick} />
 
 				<CityBar ref={this.CityBar} onBreweryClick={this.onBreweryClick} />
 
-				<BreweryBar ref={this.BreweryBar} />
+				<BreweryBar ref={this.BreweryBar} onBeerClick={this.onBeerClick} />
 
-				<CategoryBar ref={this.CategoryBar} />
+				<CategoryBar ref={this.CategoryBar} onBeerClick={this.onBeerClick} />
+
+				<BeerCard ref={this.BeerCard} onBreweryClick={this.onBreweryClick} />
 
 				<Map
 					style="mapbox://styles/mapbox/streets-v9"

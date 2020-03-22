@@ -58,7 +58,7 @@ export default class BreweryBar extends React.Component {
 	}
 
 	onBeerClick = beer => {
-		console.log(beer)
+		this.props.onBeerClick(beer)
 	}
 
 	render() {
