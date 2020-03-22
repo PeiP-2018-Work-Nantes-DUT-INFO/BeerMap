@@ -67,7 +67,7 @@
     overflow-y: auto;
     width: 100%;
     height: fit-content;
-    max-height: 20vh;
+    max-height: 50vh;
     margin-top: 10px;
     margin-bottom: 10px;
 }

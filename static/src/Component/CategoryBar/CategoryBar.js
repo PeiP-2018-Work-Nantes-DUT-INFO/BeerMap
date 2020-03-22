@@ -4,7 +4,7 @@ import "./CategoryBar.css"
 
 import Beer from '../../API/Beer';
 
-import { X, Home, Droplet, ChevronRight } from 'react-feather';
+import { X, Hexagon, Droplet, ChevronRight } from 'react-feather';
 
 export default class CategoryBar extends React.Component {
 
@@ -43,7 +43,7 @@ export default class CategoryBar extends React.Component {
 			<>
 				<div id="CategoryBar" className={this.state.hidden ? "hidden":null}>
 					<div className="CategoryBarTitle">
-						<Home size={25} />
+						<Hexagon size={25} />
 						<span className="Title">{this.state.name}</span>
 						<X onClick={this.close} size={25} />
 					</div>
@@ -65,7 +65,7 @@ export default class CategoryBar extends React.Component {
 							)
 						})}
 
-						{this.state.beers.length === 0 ?
+						{Array.isArray(this.state.beers) == false || this.state.beers.length === 0 ?
 							<div className="zero">Aucune bière trouvée.</div>
 							: null
 						}

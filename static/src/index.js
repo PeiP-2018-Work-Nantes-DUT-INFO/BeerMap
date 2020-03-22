@@ -67,7 +67,7 @@ class App extends React.Component {
 	}
 
 	onBreweryClick = props => {
-		const info = props.feature.properties;
+		const info = (props.feature && props.feature.properties) || props;
 
 		const [y, x] = info.coordinates.split(",");
 
@@ -92,7 +92,7 @@ class App extends React.Component {
 
 				<SearchBar closeBlock={this.closeBlock} onSearchResultClick={this.onSearchResultClick} />
 
-				<CityBar ref={this.CityBar} setMapCenter={this.setMapCenter} />
+				<CityBar ref={this.CityBar} onBreweryClick={this.onBreweryClick} />
 
 				<BreweryBar ref={this.BreweryBar} />
 

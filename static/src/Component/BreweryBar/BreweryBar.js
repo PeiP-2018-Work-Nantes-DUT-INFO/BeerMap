@@ -47,6 +47,7 @@ export default class BreweryBar extends React.Component {
 					this.setState({beers})
 				})
 			})
+			
 		}
 
 		this.setState({ hidden: false, hasSearched: true })
@@ -98,7 +99,7 @@ export default class BreweryBar extends React.Component {
 
 					<div className="Beers">
 
-						{this.state.beers && this.state.beers.map((beer, i) => {
+						{Array.isArray(this.state.beers) && this.state.beers.map((beer, i) => {
 							return(
 								<a key={i} onClick={_ => this.onBeerClick(beer)} href={"#beer-"+beer.id} className="Beer">
 									<div className="left">
@@ -111,7 +112,7 @@ export default class BreweryBar extends React.Component {
 							)
 						})}
 
-						{this.state.beers.length === 0 ?
+						{!Array.isArray(this.state.beers) || this.state.beers.length === 0 ?
 							<div className="zero">Aucune bière trouvée.</div>
 							: null
 						}
@@ -119,6 +120,7 @@ export default class BreweryBar extends React.Component {
 					</div>
 
 				</div>
+
 				{	this.state.hasSearched ?
 						<div id="OpenBreweryBar" onClick={this.open} className={this.state.hidden ? "" : "hidden"}>
 							Afficher les informations sur la brasserie

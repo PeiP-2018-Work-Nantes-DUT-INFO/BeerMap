@@ -27,7 +27,6 @@ export default class CityBar extends React.Component {
 			hasSearched:false
 		}
 		
-		this.BreweryBar = React.createRef()
 	}
 
 	searchWeather = _ => {
@@ -64,17 +63,12 @@ export default class CityBar extends React.Component {
 	}
 
 	onBreweryClick = brewery => {
-		this.BreweryBar.current.open({info: brewery})
-
-		const [y, x] = brewery.coordinates.split(",");
-
-		this.props.setMapCenter(x, y)
+		this.props.onBreweryClick(brewery)
 	}
 
 	render() {
 		return (
 			<>
-			<BreweryBar ref={this.BreweryBar} />
 				<div id="CityBar" className={this.state.hidden ? "hidden":null}>
 					<div className="CityBarTitle">
 						<Compass size={25} />
