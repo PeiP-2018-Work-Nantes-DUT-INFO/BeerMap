@@ -48,4 +48,5 @@ router.get('/city/:city', function (req, res) {
 router.get('/categorie/:categorie', function (req, res) {
     beerController.findByCategory(req, res);
 });
+
 module.exports = router;

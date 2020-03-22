@@ -58,7 +58,7 @@ export default class CategoryBar extends React.Component {
 
 						{Array.isArray(this.state.beers) && this.state.beers.map((beer, i) => {
 							return(
-								<a key={i} href={"#beer"+beer.id} className="Beer">
+								<a key={i} onClick={_ => this.props.onBeerClick(beer)} href={"#beer"+beer.id} className="Beer">
 									<div className="left">
 										<Droplet size={25}/>
 										{beer.name}

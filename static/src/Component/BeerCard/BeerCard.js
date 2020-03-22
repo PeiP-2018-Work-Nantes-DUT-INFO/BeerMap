@@ -16,8 +16,14 @@ export default class BeerCard extends React.Component {
 		}
 	}
 
-	close = _ => {
-		this.setState({ hidden: true })
+	close = e => {
+        if(e !== undefined){
+            // Ferme l'affichage au clic sur le fond sombre
+            if(e.target.id === "BeerCard") this.setState({ hidden: true })
+        } else {
+            // Ferme l'affichage au clic sur le X
+            this.setState({ hidden: true })
+        }
 	}
 
 	open = (beer) => {
@@ -36,7 +42,7 @@ export default class BeerCard extends React.Component {
 
 	render() {
 		return (
-            <div id="BeerCard" className={this.state.hidden ? "hidden" : null}>
+            <div id="BeerCard" onClick={this.close} className={this.state.hidden ? "hidden" : null}>
                 <div className="inside">
                     <div className="top">
                         <div className="left">
@@ -45,7 +51,7 @@ export default class BeerCard extends React.Component {
                                 {this.state.name}
                             </div>
                         </div>
-                        <X onClick={this.close} size={25} />
+                        <X onClick={_ => this.close()} size={25} />
                     </div>
 
                     <div className="main">
@@ -59,7 +65,7 @@ export default class BeerCard extends React.Component {
                             <div className="line link" onClick={this.openBrasserie} ><span className="title">Brasserie :</span>{this.state.brewer}</div>
 
                             {this.state.alcohol_by_volume ? 
-                                <div className="line"><span className="title">Alc / Vol :</span>{this.state.alcohol_by_volume}</div>
+                                <div className="line"><span className="title">Alc / Vol :</span>{this.state.alcohol_by_volume}%</div>
                             : null}
                             
                             {this.state.style ? 

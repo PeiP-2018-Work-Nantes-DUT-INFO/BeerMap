@@ -54,7 +54,7 @@ class App extends React.Component {
 				this.CategoryBar.current.open({info: search_val});
 				break;
 			case "brewery":
-				this.BreweryBar.current.open({info: search_val});
+				this.onBreweryClick(search_val);
 				break;
 			case "beer":
 				this.onBeerClick(search_val)
@@ -73,6 +73,8 @@ class App extends React.Component {
 		const info = (props.feature && props.feature.properties) || props;
 
 		const [y, x] = info.coordinates.split(",");
+
+		console.log(x, y)
 
 		this.setMapCenter(x, y);
 
