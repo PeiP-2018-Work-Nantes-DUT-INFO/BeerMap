@@ -1,3 +1,4 @@
+<span style="display:block;text-align:center">![Logo](../logo.png)</span>
 
 # Fonctionnalités
 

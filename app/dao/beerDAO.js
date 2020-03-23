@@ -12,6 +12,7 @@ class BeerDAO {
         this.common = new daoCommon();
     }
 
+    // Trouver toutes les bières
     findAll() {
         const sqlRequest = "SELECT * FROM beer";
 
@@ -20,6 +21,7 @@ class BeerDAO {
             .catch(err => err);
     };
 
+    // Trouver la bière d'un certain id
     findById(id) {
         id = parseInt(id); // on vérifie que l'id fourni peut bien être casté en entier
         if(isNaN(id)){
@@ -31,7 +33,8 @@ class BeerDAO {
             .then(row => new Beer(row))
             .catch(err => err);
     };
-
+    
+    // Trouver les bières d'une brasserie
     findAllByBrewery(brewery_id) {
         brewery_id = parseInt(brewery_id);
         if(isNaN(brewery_id)){
