@@ -1,4 +1,4 @@
-<span style="display:block;text-align:center"><img width="250" alt="Logo" src="../logo.png"></span>
+<span style="display:block;text-align:center;margin:0 auto;"><img width="250" alt="Logo" src="../logo.png"></span>
 
 
 # Fonctionnalités

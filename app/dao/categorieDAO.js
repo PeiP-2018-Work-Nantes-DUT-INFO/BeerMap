@@ -12,6 +12,7 @@ class CategorieDAO {
         this.common = new daoCommon();
     }
 
+    //
     findAll() {
         const sqlRequest = "SELECT * FROM categorie";
 

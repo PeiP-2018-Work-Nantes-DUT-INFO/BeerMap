@@ -92,7 +92,7 @@ class BeerDAO {
             .catch(err => err);
     };
 
-    // L
+    // Trouver les bières venant d'un pays
     findByCountry(country) {
         let sqlRequest = "SELECT * FROM beer WHERE country = $country  COLLATE NOCASE";
         let sqlParams = {$country: country};
@@ -101,6 +101,7 @@ class BeerDAO {
             .catch(err => err);
     };
 
+    // Trouver les bières venant d'une ville
     findByCity(city) {
         let sqlRequest = "SELECT * FROM beer WHERE city = $city COLLATE NOCASE";
         let sqlParams = {$city: city};
@@ -109,6 +110,7 @@ class BeerDAO {
             .catch(err => err);
     };
 
+    // Trouver les bières d'une catégorie
     findByCategory(categorie) {
         if(isNaN(categorie)){
             throw new DaoError(31,"Integer required");
