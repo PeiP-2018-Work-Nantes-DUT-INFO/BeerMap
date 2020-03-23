@@ -15,10 +15,10 @@ Des boîtes s’ouvriront sur l’écran, avec les informations relatives à vot
 
 Au vu des données qui ne sont pas tout le temps bien remplies nous vous conseillons de faire la recherche des éléments suivants :
 
-- Ville : London, England ou San Francisco, California
-- Bière : Hardcore IPA ou Dragonhead Stout
-- Brasserie : BrewDog Ltd ou Orkney Brewery
-- Catégorie : North American Ale ou British Ale
+- Ville : *London, England* ou *San Francisco, California*
+- Bière : *Hardcore IPA* ou *Dragonhead Stout*
+- Brasserie : *BrewDog Ltd* ou *Orkney Brewery*
+- Catégorie : *North American Ale* ou *British Ale*
 
 Lors d’une recherche de catégorie ou d’une bière, vous ne serez pas amené sur la position géographique de la bière. Cependant vous pouvez cliquer, dans les informations de la bière, sur le nom de la brasserie pour vous déplacer automatiquement sur la carte.
 
