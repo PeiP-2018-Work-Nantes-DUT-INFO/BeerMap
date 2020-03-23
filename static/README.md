@@ -3,7 +3,7 @@
 
 Beer Map est une application web contenant une carte intéractive. Elle permet de rechercher les brasseries et les bières en entrant le nom d’une ville, d’une brasserie, d’une bière, d’une catégorie ou tout simplement en cliquant sur une brasserie sur la carte.
 
-L’application affiche également la météo une fois qu’une brasserie est sélectionnée. 
+L’application affiche également la météo une fois qu’une ville est sélectionnée. 
 
 # Points d’entrée
 
