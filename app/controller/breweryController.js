@@ -28,7 +28,7 @@ class BreweryController {
                 .catch(this.common.findError(res));
         }
         catch (err) {
-            res.status(err.errorCode);
+            res.status(400);
             res.json(err);
         }
     };

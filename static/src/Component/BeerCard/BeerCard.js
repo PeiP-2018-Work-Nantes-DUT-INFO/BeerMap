@@ -30,6 +30,7 @@ export default class BeerCard extends React.Component {
         console.log(beer)
         this.setState({ hidden: false, ...beer }, _ => {
             Brewerie.findById(beer.brewery_id).then(b => {
+                console.log(b)
                 this.setState({brasserie: b})
             })
         })
@@ -65,7 +66,7 @@ export default class BeerCard extends React.Component {
                             <div className="line link" onClick={this.openBrasserie} ><span className="title">Brasserie :</span>{this.state.brewer}</div>
 
                             {this.state.alcohol_by_volume ? 
-                                <div className="line"><span className="title">Alc / Vol :</span>{this.state.alcohol_by_volume}%</div>
+                                <div className="line"><span className="title">Alc / Vol :</span>{this.state.alcohol_by_volume.toFixed(2)}%</div>
                             : null}
                             
                             {this.state.style ? 

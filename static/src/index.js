@@ -74,8 +74,6 @@ class App extends React.Component {
 
 		const [y, x] = info.coordinates.split(",");
 
-		console.log(x, y)
-
 		this.setMapCenter(x, y);
 
 		const ville = {

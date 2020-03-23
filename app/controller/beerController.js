@@ -32,7 +32,7 @@ class BeerController {
                 .catch(this.common.findError(res));
         }
         catch (err) {
-            res.status(err.errorCode);
+            res.status(400);
             res.json(err);
         }
     };
@@ -45,7 +45,7 @@ class BeerController {
                 .catch(this.common.findError(res));
         }
         catch (err) {
-            res.status(err.errorCode);
+            res.status(400);
             res.json(err);
         }
     }
@@ -65,7 +65,7 @@ class BeerController {
                 .catch(this.common.findError(res));
         }
         catch (err) {
-            res.status(err.errorCode);
+            res.status(400);
             res.json(err);
         }
     };
@@ -78,7 +78,7 @@ class BeerController {
                 .catch(this.common.findError(res));
         }
         catch (err) {
-            res.status(err.errorCode);
+            res.status(400);
             res.json(err);
         }
     };
@@ -98,10 +98,16 @@ class BeerController {
     };
 
     findByCategory(req, res) {
-        let categorie = req.params.categorie;
-        this.beerDAO.findByCategory(categorie)
-            .then(this.common.findSuccess(res))
-            .catch(this.common.findError(res));
+        try {
+            let categorie = req.params.categorie;
+            this.beerDAO.findByCategory(categorie)
+                .then(this.common.findSuccess(res))
+                .catch(this.common.findError(res));
+        }
+        catch (err) {
+            res.status(400);
+            res.json(err);
+        }    
     };
 }
 

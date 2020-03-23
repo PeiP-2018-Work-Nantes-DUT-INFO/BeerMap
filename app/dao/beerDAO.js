@@ -23,7 +23,7 @@ class BeerDAO {
     findById(id) {
         id = parseInt(id); // on vérifie que l'id fourni peut bien être casté en entier
         if(isNaN(id)){
-            throw new DaoError(400,"Integer required");
+            throw new DaoError(31,"Integer required");
         }
         let sqlRequest = "SELECT * FROM beer WHERE id=$id";
         let sqlParams = {$id: id};
@@ -35,7 +35,7 @@ class BeerDAO {
     findAllByBrewery(brewery_id) {
         brewery_id = parseInt(brewery_id);
         if(isNaN(brewery_id)){
-            throw new DaoError(400, "Integer required");
+            throw new DaoError(31, "Integer required");
         }
         let sqlRequest = "SELECT * FROM beer WHERE brewery_id=$brewery_id";
         let sqlParams = {$brewery_id: brewery_id};
@@ -62,7 +62,7 @@ class BeerDAO {
     findByVolumeHigherThan(volume) {
         volume = parseInt(volume); // on vérifie que le volume fourni peut bien être casté en entier
         if(isNaN(volume)){
-            throw new DaoError(400,"Integer required");
+            throw new DaoError(31,"Integer required");
         }
 
         let sqlRequest = "SELECT * FROM beer WHERE alcohol_by_volume >= $volume";
@@ -75,7 +75,7 @@ class BeerDAO {
     findByVolumeLowerThan(volume) {
         volume = parseInt(volume); // on vérifie que le volume fourni peut bien être casté en entier
         if(isNaN(volume)){
-            throw new DaoError(400,"Integer required");
+            throw new DaoError(31,"Integer required");
         }
         
         let sqlRequest = "SELECT * FROM beer WHERE alcohol_by_volume <= $volume";
@@ -102,9 +102,10 @@ class BeerDAO {
     };
 
     findByCategory(categorie) {
-        let sqlRequest = `SELECT b.name, b.id, b.brewery_id, b.cat_id, b.style_id, b.alcohol_by_volume, b.international_bitterness_units, 
-        b.standard_reference_method, b.universal_product_code, b.filepath, b.description, b.add_user, b.last_mod,b.style,b.category,b.brewer,
-        b.address, b.city, b.state, b.country, b.coordinates, b.website FROM beer b, categorie c WHERE b.cat_id = c.id AND b.cat_id = $categorie`;
+        if(isNaN(categorie)){
+            throw new DaoError(31,"Integer required");
+        }
+        let sqlRequest = `SELECT * FROM beer WHERE cat_id = $categorie`;
         let sqlParams = {$categorie: categorie};
         return this.common.findAllWithParams(sqlRequest, sqlParams)
             .then(row => row.map(beer => new Beer(beer)))

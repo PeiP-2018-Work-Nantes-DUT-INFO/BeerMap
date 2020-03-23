@@ -1,68 +1,46 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+# Fonctionnalités
 
-In the project directory, you can run:
+Beer Map est une application web contenant une carte intéractive. Elle permet de rechercher les brasseries et les bières en entrant le nom d’une ville, d’une brasserie, d’une bière, d’une catégorie ou tout simplement en cliquant sur une brasserie sur la carte.
 
-### `yarn start`
+L’application affiche également la météo une fois qu’une brasserie est sélectionnée. 
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+# Points d’entrée
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+Pour utiliser notre application, vous pouvez commencer par :
+- Faire une recherche d’une ville, d’une bière, d’une brasserie, ou d’une catégorie de bière. 
+- Cliquer sur une icône de bière qui s’affiche sur la carte.
 
-### `yarn test`
+Des boîtes s’ouvriront sur l’écran, avec les informations relatives à votre recherche.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Au vue des données qui ne sont pas tout le temps bien remplies nous vous conseillons de faire la recherche des éléments suivants :
 
-### `yarn build`
+- Ville : London, England ou San Francisco, California
+- Bière : Hardcore IPA ou Dragonhead Stout
+- Brasserie : BrewDog Ltd ou Orkney Brewery
+- Catégorie : North American Ale ou British Ale
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Lors d’une recherche de catégorie ou d’une bière, vous ne serez pas amener sur la position géographique de la bière. Cependant vous pouvez cliquer, dans les informations de la bière, sur le nom de la brasserie pour vous déplacer automatiquement sur la carte.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+# Architecture de l’application
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+L’application se décompose en deux parties différentes : le serveur et le client. La partie serveur a été développée pour être utilisée en M4105C, elle contient donc un service REST et un websocket.
 
-### `yarn eject`
+A la racine du dossier, nous avons ainsi le serveur. Dans le dossier static, nous retrouvons l’application en React JS. Les différents composants de l’interface se trouvent dans le dossier components. Nous y retrouvons :
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- BeerCard : Modale utilisée pour afficher les informations d’une bière.
+- BreweryBar : Panel affiché à droite de l’écran pour afficher les informations d’une brasserie (nom, adresse, téléphone, site web s’il existe, bières...).
+- CategoryBar : Panel affiché à droite pour présenter toutes les bières appartenant à une catégorie.
+- CityBar : Panel affiché à gauche pour afficher toutes les informations d’une ville (nom, météo, brasseries).
+- SearchBar : Barre de recherche qui s’affiche au dessus. - Dans le dossier Result, se trouve 4 composants qui permettent l’affichage des résultats de la barre de recherche.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+# Choix de développement
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Pour réaliser cette application, nous avons utilisé le framework de Facebook nommé React.js. Pour la carte, nous avons utilisé MapBox qui est un service de cartographie.<br>
+Nous avons utilisé git pour sauvegarder les fichiers, et nous avons utilisé Vs Code avec LiveShare pour pouvoir développer en temps réel.
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+# API utilisées 
+- Nous avons utilisé notre serveur REST développé pour le cour M4105C.
+- Nous avons utilisé OpenWeatherMap pour récupérer la météo des villes.
+- Coté serveur, nous avons utilisé ArcGIS pour récupérer la position des villes recherchées.

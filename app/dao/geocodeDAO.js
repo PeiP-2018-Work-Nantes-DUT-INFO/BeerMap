@@ -23,7 +23,7 @@ class GeocodeDAO {
     findById(id) {
         id = parseInt(id); // on vérifie que l'id fourni peut bien être casté en entier
         if(isNaN(id)){
-            throw new DaoError(400,"Integer required");
+            throw new DaoError(31,"Integer required");
         }
 
         let sqlRequest = "SELECT * FROM geocode WHERE id=$id";
@@ -36,7 +36,7 @@ class GeocodeDAO {
     findByBreweryId(brewery_id) {
         brewery_id = parseInt(brewery_id); // on vérifie que l'id fourni peut bien être casté en entier
         if(isNaN(brewery_id)){
-            throw new DaoError(400,"Integer required");
+            throw new DaoError(31,"Integer required");
         }
 
         let sqlRequest = "SELECT * FROM geocode WHERE brewery_id=$brewery_id";
