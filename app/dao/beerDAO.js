@@ -126,39 +126,72 @@ class BeerDAO {
     create(categorie) {
         const sqlRequest = "INSERT INTO beer(" +
             "name, id, brewery_id, cat_id, style_id,alcohol_by_volume,international_bitterness_units,standard_reference_method,universal_product_code,filepath,description,add_user,last_mod,style,category,brewer,address,city,state,country,coordinates,website) " +
-            "VALUES ($id,$catName,$lastMod)";
-            $name,
-            $id
-            $brewery_id
-            $cat_id
-            $style_id
-            $alcohol_by_volume,international_bitterness_units,standard_reference_method,universal_product_code,filepath,description,add_user,last_mod,style,category,brewer,address,city,state,country,coordinates,website
+            "VALUES ($name, $id, $brewery_id, $cat_id, $style_id, $alcohol_by_volume, $international_bitterness_units, $standard_reference_method, $universal_product_code, $filepath, $description, $add_user, $last_mod, $style, $category, $brewer, $address, $city, $state, $country, $coordinates, $website)";
+            
         const sqlParams = {
-            $id: categorie.id,
-            $catName: categorie.catName,
-            $lastMod : categorie.lastMod
+            $name: beer.name,
+            $id: beer.id,
+            $brewery_id: beer.brewery_id,
+            $cat_id: beer.cat_id,
+            $style_id: beer.style_id,
+            $alcohol_by_volume: beer.alcohol_by_volume,
+            $international_bitterness_units: beer.international_bitterness_units,
+            $standard_reference_method: beer.standard_reference_method,
+            $universal_product_code: beer.universal_product_code,
+            $filepath: beer.filepath,
+            $description: beer.description,
+            $add_user: beer.add_user,
+            $last_mod: beer.last_mod,
+            $style: beer.style,
+            $category: beer.category,
+            $brewer: beer.brewer,
+            $address: beer.address,
+            $city: beer.city,
+            $state: beer.state,
+            $country: beer.country,
+            $coordinates: beer.coordinates,
+            $website: beer.website
         };
         return this.common.run(sqlRequest, sqlParams);
     };
 
     // Suppression d'une bière
     deleteById(id) {
-        let sqlRequest = "DELETE FROM categorie WHERE id=$id";
+        let sqlRequest = "DELETE FROM beer WHERE id=$id";
         let sqlParams = {$id: id};
         return this.common.run(sqlRequest, sqlParams);
     };
 
     // Mise à jour d'une bière
     update(categorie) {
-        let sqlRequest = "UPDATE categorie SET " +
+        const sqlRequest = "UPDATE beer SET " +
             "cat_name=$catName, " +
             "last_mod=$lastMod " +
             "WHERE id=$id";
 
-        let sqlParams = {
-            $catName: categorie.catName,
-            $lastMod: categorie.lastMod,
-            $id: categorie.id
+        const sqlParams = {
+            $name: beer.name,
+            $id: beer.id,
+            $brewery_id: beer.brewery_id,
+            $cat_id: beer.cat_id,
+            $style_id: beer.style_id,
+            $alcohol_by_volume: beer.alcohol_by_volume,
+            $international_bitterness_units: beer.international_bitterness_units,
+            $standard_reference_method: beer.standard_reference_method,
+            $universal_product_code: beer.universal_product_code,
+            $filepath: beer.filepath,
+            $description: beer.description,
+            $add_user: beer.add_user,
+            $last_mod: beer.last_mod,
+            $style: beer.style,
+            $category: beer.category,
+            $brewer: beer.brewer,
+            $address: beer.address,
+            $city: beer.city,
+            $state: beer.state,
+            $country: beer.country,
+            $coordinates: beer.coordinates,
+            $website: beer.website
         };
         return this.common.run(sqlRequest, sqlParams);
     };

@@ -1,127 +1,117 @@
 #BreweryBar {
-    position: absolute;
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-    align-items: center;
-    top: 50%;
-    right: 2.5vw;
-    transform: translateY(-50%);
-    z-index: 50;
-    width: 350px;
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0 0 5px 0 rgba(0, 0, 0, .15);
+	position: absolute;
+	display: flex;
+	flex: 1;
+	flex-direction: column;
+	align-items: center;
+	top: 50%;
+	right: 2.5vw;
+	transform: translateY(-50%);
+	z-index: 50;
+	width: 350px;
+	background: white;
+	border-radius: 10px;
+	box-shadow: 0 0 5px 0 rgba(0, 0, 0, .15);
 }
 
 #BreweryBar.hidden {
-    display: none;
+	display: none;
 }
 
 #BreweryBar .BreweryBarTitle {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    padding: 25px;
-    box-sizing: border-box;
-    text-align: center;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
+	padding: 25px;
+	box-sizing: border-box;
+	text-align: center;
 }
 
 #BreweryBar .BreweryBarTitle .Title {
-    color: black;
-    font-size: 20px;
-    font-weight: 800;
+	color: black;
+	font-size: 20px;
+	font-weight: 800;
 }
 
 #BreweryBar .BreweryBarTitle svg {
-    cursor: pointer;
+	cursor: pointer;
 }
 
 #BreweryBar h2 {
-    width: 100%;
-    padding: 15px 25px 5px;
-    font-size: 18px;
-    margin: 0;
-    box-sizing: border-box;
-    border-top: 1px solid rgba(0,0,0,.15);
+	width: 100%;
+	padding: 15px 25px 5px;
+	font-size: 18px;
+	margin: 0;
+	box-sizing: border-box;
+	border-top: 1px solid rgba(0, 0, 0, .15);
 }
 
 #BreweryBar .Info {
-    display: flex;
-    width: 100%;
-    max-width: 100%;
-    overflow: hidden;
-    padding: 5px 0;
-    padding-left: 25px;
-    font-size: 15px;
-    box-sizing: border-box;
+	display: flex;
+	width: 100%;
+	max-width: 100%;
+	overflow: hidden;
+	padding: 5px 0;
+	padding-left: 25px;
+	font-size: 15px;
+	box-sizing: border-box;
 }
 
 #BreweryBar .Info strong {
-    padding-right: 5px;
+	padding-right: 5px;
 }
 
-
 #BreweryBar .Beers {
-    display: flex;
-    flex-direction: column;
-    overflow-y: auto;
-    width: 100%;
-    height: fit-content;
-    max-height: 25vh;
-    margin-top: 10px;
-    margin-bottom: 10px;
+	display: flex;
+	flex-direction: column;
+	overflow-y: auto;
+	width: 100%;
+	height: fit-content;
+	max-height: 25vh;
+	margin-top: 10px;
+	margin-bottom: 10px;
 }
 
 #BreweryBar .Beers .Beer {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    color: black;
-    padding: 10px 15px;
-    box-sizing: border-box;
-    text-decoration: none;
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+	color: black;
+	padding: 10px 15px;
+	box-sizing: border-box;
+	text-decoration: none;
 }
 
 #BreweryBar .Beers .Beer:hover {
-    background: rgba(0, 0, 0, .15)
+	background: rgba(0, 0, 0, .15)
 }
 
 #BreweryBar .Beers .Beer .left {
-    display: flex;
-    align-items: center;
+	display: flex;
+	align-items: center;
 }
 
 #BreweryBar .Beers .Beer .left svg {
-    margin-right: 10px;
+	margin-right: 10px;
 }
-
-
-
-
 
 #OpenBreweryBar {
-    background-color: white;
-    color: #858585;
-    box-shadow: 0 0 5px 0 rgba(0, 0, 0, .15);
-    writing-mode: vertical-lr;
-
-    padding: 10px 5px;
-
-    position: absolute;
-    top: 50%;
-    right:0;
-    transform: translateY(-50%);
-
-    z-index: 1;
-
-    cursor: pointer;
-    border-top-left-radius: 15px;
-    border-bottom-left-radius: 15px;
+	background-color: white;
+	color: #858585;
+	box-shadow: 0 0 5px 0 rgba(0, 0, 0, .15);
+	writing-mode: vertical-lr;
+	padding: 10px 5px;
+	position: absolute;
+	top: 50%;
+	right: 0;
+	transform: translateY(-50%);
+	z-index: 1;
+	cursor: pointer;
+	border-top-left-radius: 15px;
+	border-bottom-left-radius: 15px;
 }
 
-
 #OpenBreweryBar.hidden {
-    display: none;
+	display: none;
 }

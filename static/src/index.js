@@ -34,7 +34,7 @@ class App extends React.Component {
 
 	componentDidMount() {
 		Brewerie.findAll().then(data => {
-			this.setState({brewerie: data.slice(1)})
+			this.setState({ brewerie: data.slice(1) })
 		}).catch(err => {
 			console.error(err)
 		})
@@ -47,11 +47,11 @@ class App extends React.Component {
 	onSearchResultClick = search_val => {
 		switch (search_val.type) {
 			case "city":
-				this.CityBar.current.open({ville: search_val})
+				this.CityBar.current.open({ ville: search_val })
 				this.setMapCenter(search_val.location.x, search_val.location.y)
 				break;
 			case "category":
-				this.CategoryBar.current.open({info: search_val});
+				this.CategoryBar.current.open({ info: search_val });
 				break;
 			case "brewery":
 				this.onBreweryClick(search_val);
@@ -84,14 +84,14 @@ class App extends React.Component {
 			address: info.city
 		}
 
-		this.BreweryBar.current.open({info});
+		this.BreweryBar.current.open({ info });
 
-		this.CityBar.current.open({ville});
+		this.CityBar.current.open({ ville });
 	}
 
 	onBeerClick = beer => {
 		this.BeerCard.current.open(beer)
-	} 
+	}
 
 	render() {
 		return (
@@ -121,12 +121,12 @@ class App extends React.Component {
 						type="symbol"
 						layout={{ "icon-image": "beer-15" }}>
 
-							{this.state.brewerie.map((el, i) => {
-								return <Feature key={i} onClick={this.onBreweryClick} properties={el} coordinates={[el.coordinates.split(",")[1], el.coordinates.split(",")[0]]}  />
-							})}
+						{this.state.brewerie.map((el, i) => {
+							return <Feature key={i} onClick={this.onBreweryClick} properties={el} coordinates={[el.coordinates.split(",")[1], el.coordinates.split(",")[0]]} />
+						})}
 
 					</Layer>
-					
+
 				</Map>
 			</div>
 		)

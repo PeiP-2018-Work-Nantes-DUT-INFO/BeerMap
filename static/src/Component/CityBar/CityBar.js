@@ -4,7 +4,7 @@ import "./CityBar.css"
 
 import Weather from "../../API/Weather"
 import Brewerie from '../../API/Brewerie';
-import BreweryBar from "../BreweryBar/BreweryBar";
+
 import { X, Home, ChevronRight, Compass } from 'react-feather';
 
 export default class CityBar extends React.Component {
@@ -24,9 +24,9 @@ export default class CityBar extends React.Component {
 			weather: {
 				icon: ""
 			},
-			hasSearched:false
+			hasSearched: false
 		}
-		
+
 	}
 
 	searchWeather = _ => {
@@ -45,19 +45,19 @@ export default class CityBar extends React.Component {
 
 	close = def => {
 		this.setState({ hidden: true })
-	
-		if(def === true){
+
+		if (def === true) {
 			this.setState({ hasSearched: false })
 		}
 	}
 
-	open = ({ville}) => {
+	open = ({ ville }) => {
 
-		if(ville !== undefined){
+		if (ville !== undefined) {
 
 			this.setState({ ville: ville }, _ => {
-				Brewerie.findAllByCity(this.state.ville.address.split(",")[0]).then(data=> {
-					this.setState({breweries: (Array.isArray(data) && data) || []})
+				Brewerie.findAllByCity(this.state.ville.address.split(",")[0]).then(data => {
+					this.setState({ breweries: (Array.isArray(data) && data) || [] })
 				})
 				this.searchWeather()
 			})
@@ -73,7 +73,7 @@ export default class CityBar extends React.Component {
 	render() {
 		return (
 			<>
-				<div id="CityBar" className={this.state.hidden ? "hidden":null}>
+				<div id="CityBar" className={this.state.hidden ? "hidden" : null}>
 					<div className="CityBarTitle">
 						<Compass size={25} />
 						<span className="Title">{this.state.ville.address.split(",")[0]}</span>
@@ -83,7 +83,7 @@ export default class CityBar extends React.Component {
 					<h2>Météo</h2>
 
 					<div className="Weather">
-						<img src={this.state.weather.icon} alt="WeatherIcon"/>
+						<img src={this.state.weather.icon} alt="WeatherIcon" />
 						<div className="WeatherInfo">
 							<div className="Temperature">{this.state.weather.temperature}°C</div>
 							<div className="Title">{this.state.weather.description}</div>
@@ -95,11 +95,11 @@ export default class CityBar extends React.Component {
 					<div className="Breweries">
 
 						{this.state.breweries.map((brewery, i) => {
-							return(
-								<a key={i} onClick={() => this.onBreweryClick(brewery)} href={"#brewery-"+brewery.id} className="Brewerie">
+							return (
+								<a key={i} onClick={() => this.onBreweryClick(brewery)} href={"#brewery-" + brewery.id} className="Brewerie">
 
 									<div className="left">
-										<Home size={25}/>
+										<Home size={25} />
 										{brewery.breweries}
 									</div>
 
@@ -116,14 +116,14 @@ export default class CityBar extends React.Component {
 					</div>
 
 				</div>
-				{	this.state.hasSearched ?
-						<div id="OpenCityBar" onClick={this.open} className={this.state.hidden ? "" : "hidden"}>
-							Afficher les informations sur la ville
+				{this.state.hasSearched ?
+					<div id="OpenCityBar" onClick={this.open} className={this.state.hidden ? "" : "hidden"}>
+						Afficher les informations sur la ville
 						</div>
 					: null
 				}
-				
+
 			</>
-    	)
+		)
 	}
 }

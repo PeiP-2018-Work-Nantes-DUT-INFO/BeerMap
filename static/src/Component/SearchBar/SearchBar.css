@@ -1,72 +1,71 @@
 #SearchBar {
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    top: 25px;
-    left:25vw;
-    z-index: 50;
-    width: 50vw;
+	position: absolute;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	top: 25px;
+	left: 25vw;
+	z-index: 50;
+	width: 50vw;
 }
 
-#SearchBar .SearchBarItem,
-#SearchBar .SearchBarInput {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    background: white;
-    border-radius: 10px;
-    overflow: hidden;
-    margin-bottom: 10px;
+#SearchBar .SearchBarItem, #SearchBar .SearchBarInput {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
+	background: white;
+	border-radius: 10px;
+	overflow: hidden;
+	margin-bottom: 10px;
 }
 
 #SearchBar .SearchBarInput {
-    box-shadow: 0 0 5px 0 rgba(0, 0, 0, .15);
+	box-shadow: 0 0 5px 0 rgba(0, 0, 0, .15);
 }
 
 #SearchBar .SearchBarInput svg {
-    cursor: pointer;
-    padding: 0 15px;
+	cursor: pointer;
+	padding: 0 15px;
 }
 
 #SearchBar .SearchBarInput:focus-within {
-    box-shadow: 0 0 5px 0px rgba(0, 0, 0, .3);
+	box-shadow: 0 0 5px 0px rgba(0, 0, 0, .3);
 }
 
 #SearchBar .SearchBarInput input {
-    flex: 1;
-    border: 0;
-    font-size: 16px;
-    outline: none;
-    padding: 15px;
+	flex: 1;
+	border: 0;
+	font-size: 16px;
+	outline: none;
+	padding: 15px;
 }
 
 #SearchBar .SearchBarItem {
-    cursor: pointer;
-    box-sizing: border-box;
-    padding: 10px 15px;
-    box-shadow: 0 0 5px 0px rgba(0, 0, 0, .3);
-    text-decoration: none;
-    color: black;
-    justify-content: flex-start;
+	cursor: pointer;
+	box-sizing: border-box;
+	padding: 10px 15px;
+	box-shadow: 0 0 5px 0px rgba(0, 0, 0, .3);
+	text-decoration: none;
+	color: black;
+	justify-content: flex-start;
 }
 
 #SearchBar .SearchBarItem:hover {
-    background: rgba(240, 240, 240);
+	background: rgba(240, 240, 240);
 }
 
 #SearchBar .SearchBarItem .SubTitle {
-    color: grey;
-    font-weight: 800;
-    padding: 0 10px;
+	color: grey;
+	font-weight: 800;
+	padding: 0 10px;
 }
 
 #SearchBar .SearchBarItem .Value {
-    flex: 1;
-    color: #bba212;
-    font-weight: 800;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+	flex: 1;
+	color: #bba212;
+	font-weight: 800;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }

@@ -16,4 +16,4 @@ function findAllByCategory(id) {
     })
 }
 
-export default { findAllByBrewery, findAllByCategory}
+export default { findAllByBrewery, findAllByCategory }

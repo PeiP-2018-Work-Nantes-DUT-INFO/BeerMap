@@ -19,21 +19,21 @@ export default class CategoryBar extends React.Component {
 
 	close = def => {
 		this.setState({ hidden: true })
-	
-		if(def === true){
+
+		if (def === true) {
 			this.setState({ hasSearched: false })
 		}
 	}
 
-	open = ({info}) => {
+	open = ({ info }) => {
 
-		if(info !== undefined){
+		if (info !== undefined) {
 			console.log(info)
 			this.setState({
 				name: info.cat_name,
 			}, _ => {
-				Beer.findAllByCategory(info.id).then(beers=> {
-					this.setState({beers})
+				Beer.findAllByCategory(info.id).then(beers => {
+					this.setState({ beers })
 					console.log(beers)
 				})
 			})
@@ -45,7 +45,7 @@ export default class CategoryBar extends React.Component {
 	render() {
 		return (
 			<>
-				<div id="CategoryBar" className={this.state.hidden ? "hidden":null}>
+				<div id="CategoryBar" className={this.state.hidden ? "hidden" : null}>
 					<div className="CategoryBarTitle">
 						<Hexagon size={25} />
 						<span className="Title">{this.state.name}</span>
@@ -57,10 +57,10 @@ export default class CategoryBar extends React.Component {
 					<div className="Beers">
 
 						{Array.isArray(this.state.beers) && this.state.beers.map((beer, i) => {
-							return(
-								<a key={i} onClick={_ => this.props.onBeerClick(beer)} href={"#beer"+beer.id} className="Beer">
+							return (
+								<a key={i} onClick={_ => this.props.onBeerClick(beer)} href={"#beer" + beer.id} className="Beer">
 									<div className="left">
-										<Droplet size={25}/>
+										<Droplet size={25} />
 										{beer.name}
 									</div>
 
@@ -79,6 +79,6 @@ export default class CategoryBar extends React.Component {
 				</div>
 
 			</>
-    	)
+		)
 	}
 }

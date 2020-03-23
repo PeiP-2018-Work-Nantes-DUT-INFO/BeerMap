@@ -27,15 +27,15 @@ export default class BreweryBar extends React.Component {
 
 	close = def => {
 		this.setState({ hidden: true })
-	
-		if(def === true){
+
+		if (def === true) {
 			this.setState({ hasSearched: false })
 		}
 	}
 
-	open = ({info}) => {
+	open = ({ info }) => {
 
-		if(info !== undefined){
+		if (info !== undefined) {
 
 			this.setState({
 				bid: info.bid,
@@ -48,8 +48,8 @@ export default class BreweryBar extends React.Component {
 				website: info.website,
 			}, _ => {
 				console.log(info)
-				Beer.findAllByBrewery(info.bid || info.id).then(beers=> {
-					this.setState({beers})
+				Beer.findAllByBrewery(info.bid || info.id).then(beers => {
+					this.setState({ beers })
 				})
 			})
 
@@ -65,14 +65,14 @@ export default class BreweryBar extends React.Component {
 	render() {
 		return (
 			<>
-				<div id="BreweryBar" className={this.state.hidden ? "hidden":null}>
+				<div id="BreweryBar" className={this.state.hidden ? "hidden" : null}>
 					<div className="BreweryBarTitle">
 						<Home size={25} />
 						<span className="Title">{this.state.name}</span>
 						<X onClick={this.close} size={25} />
 					</div>
 
-					<h2>Information</h2>	
+					<h2>Information</h2>
 
 					<div className="Info">
 						<strong>Adresse :</strong>{this.state.address}
@@ -81,11 +81,11 @@ export default class BreweryBar extends React.Component {
 						<strong>Ville :</strong> {this.state.city}
 					</div>
 
-					{this.state.state !== "" ? 
+					{this.state.state !== "" ?
 						<div className="Info">
 							<strong>État :</strong> {this.state.state}
 						</div>
-					: null}
+						: null}
 
 					<div className="Info">
 						<strong>Pays :</strong> {this.state.country}
@@ -94,21 +94,21 @@ export default class BreweryBar extends React.Component {
 						<strong>Téléphone :</strong> {this.state.phone}
 					</div>
 
-					{this.state.website !== "" ? 
+					{this.state.website !== "" ?
 						<div className="Info">
 							<strong>Site web :</strong><a href={this.state.website} rel="noopener noreferrer" target="_blank">{this.state.website}</a>
 						</div>
-					: null}
+						: null}
 
 					<h2>Bière</h2>
 
 					<div className="Beers">
 
 						{Array.isArray(this.state.beers) && this.state.beers.map((beer, i) => {
-							return(
-								<a key={i} onClick={_ => this.onBeerClick(beer)} href={"#beer-"+beer.id} className="Beer">
+							return (
+								<a key={i} onClick={_ => this.onBeerClick(beer)} href={"#beer-" + beer.id} className="Beer">
 									<div className="left">
-										<Droplet size={25}/>
+										<Droplet size={25} />
 										{beer.name}
 									</div>
 
@@ -126,14 +126,14 @@ export default class BreweryBar extends React.Component {
 
 				</div>
 
-				{	this.state.hasSearched ?
-						<div id="OpenBreweryBar" onClick={this.open} className={this.state.hidden ? "" : "hidden"}>
-							Afficher les informations sur la brasserie
+				{this.state.hasSearched ?
+					<div id="OpenBreweryBar" onClick={this.open} className={this.state.hidden ? "" : "hidden"}>
+						Afficher les informations sur la brasserie
 						</div>
 					: null
 				}
-				
+
 			</>
-    	)
+		)
 	}
 }

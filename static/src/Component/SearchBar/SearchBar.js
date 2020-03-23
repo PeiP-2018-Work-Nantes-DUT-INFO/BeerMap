@@ -29,7 +29,7 @@ export default class SearchBar extends React.Component {
 			var brewery = Array.isArray(data.brewery) ? data.brewery.map(el => { el.type = "brewery"; return el }) : []
 			var category = Array.isArray(data.category) ? data.category.map(el => { el.type = "category"; return el }) : []
 
-			this.setState({result: [...city, ...beer, ...brewery, ...category] })
+			this.setState({ result: [...city, ...beer, ...brewery, ...category] })
 		});
 	}
 
@@ -43,7 +43,7 @@ export default class SearchBar extends React.Component {
 
 		this.setState({ value: e.target.value })
 
-		if(e.target.value.length > 4) {
+		if (e.target.value.length > 4) {
 			this.timer = setTimeout(_ => {
 				this.onSearch({ charCode: 13 })
 			}, 500)
