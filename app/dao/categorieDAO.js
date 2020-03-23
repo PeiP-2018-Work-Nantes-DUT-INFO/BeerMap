@@ -46,7 +46,7 @@ class CategorieDAO {
             .catch(err => err);
     };
 
-    // Trouver la catégorie dont le nom en paramètre est inclus dans le nom de la ca
+    // Trouver les catégories dont le nom en paramètre est inclus dans le nom de la catégorie
     findAllByName(name){
         let sqlRequest = "SELECT * FROM categorie WHERE UPPER(cat_name) LIKE '%"+name+"%' ORDER BY cat_name ASC LIMIT 5"
         return this.common.findAll(sqlRequest)
@@ -54,6 +54,7 @@ class CategorieDAO {
             .catch(err => err);
     }
 
+    // Ajout d'une catégorie
     create(categorie) {
         const sqlRequest = "INSERT INTO categorie(" +
             "id,cat_name,last_mod) " +
@@ -66,12 +67,14 @@ class CategorieDAO {
         return this.common.run(sqlRequest, sqlParams);
     };
 
+    // Suppression d'une catégorie
     deleteById(id) {
         let sqlRequest = "DELETE FROM categorie WHERE id=$id";
         let sqlParams = {$id: id};
         return this.common.run(sqlRequest, sqlParams);
     };
 
+    // Mise à jour d'une catégorie
     update(categorie) {
         let sqlRequest = "UPDATE categorie SET " +
             "cat_name=$catName, " +

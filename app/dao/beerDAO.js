@@ -56,7 +56,7 @@ class BeerDAO {
             .catch(err => err);
     };
 
-    // Trouver les bières dont le nom est inclus dans le nom donné en paramètre "name"
+    // Trouver les bières dont le nom en paramètre est inclus dans le nom de la bière
     findAllByName(name){
         let sqlRequest = "SELECT * FROM beer WHERE UPPER(name) LIKE '%"+name+"%' ORDER BY name ASC LIMIT 5"
         return this.common.findAll(sqlRequest)
