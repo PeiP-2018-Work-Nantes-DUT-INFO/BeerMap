@@ -1,5 +1,8 @@
-<span style="display:block;text-align:center;margin:0 auto;"><img width="250" alt="Logo" src="../logo.png"></span>
-
+<p align="center">
+  <a href="https://github.com/PeiP-2018-Work-Nantes-DUT-INFO/BeerMap">
+    <img width="250" alt="Logo" src="../logo.png">
+  </a>
+</p>
 
 # Fonctionnalités
 

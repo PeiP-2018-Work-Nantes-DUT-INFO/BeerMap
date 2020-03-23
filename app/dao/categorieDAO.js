@@ -12,7 +12,7 @@ class CategorieDAO {
         this.common = new daoCommon();
     }
 
-    //
+    // Trouver toutes les catégories
     findAll() {
         const sqlRequest = "SELECT * FROM categorie";
 
@@ -24,6 +24,7 @@ class CategorieDAO {
             .catch(err => err);
     };
 
+    // Trouver la catégorie ayant un certain id
     findById(id) {
         id = parseInt(id); // on vérifie que l'id fourni peut bien être casté en entier
         if(isNaN(id)){
@@ -35,6 +36,8 @@ class CategorieDAO {
             .then(row => new Categorie(row))
             .catch(err => err);
     };
+
+    // Trouver la catégorie ayant un certain nom
     findByName(name) {
         let sqlRequest = "SELECT * FROM categorie WHERE cat_name=$name COLLATE NOCASE";
         let sqlParams = {$name: name};
@@ -43,6 +46,7 @@ class CategorieDAO {
             .catch(err => err);
     };
 
+    // Trouver la catégorie dont le nom en paramètre est inclus dans le nom de la ca
     findAllByName(name){
         let sqlRequest = "SELECT * FROM categorie WHERE UPPER(cat_name) LIKE '%"+name+"%' ORDER BY cat_name ASC LIMIT 5"
         return this.common.findAll(sqlRequest)
