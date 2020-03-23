@@ -34,6 +34,7 @@ class App extends React.Component {
 		this.BreweryBar = React.createRef()
 		this.CategoryBar = React.createRef()
 		this.BeerCard = React.createRef()
+		this.SearchBar = React.createRef()
 	}
 
 	componentDidMount() {
@@ -102,6 +103,9 @@ class App extends React.Component {
 
 		// On affiche le bloc ville
 		this.CityBar.current.open({ ville });
+
+		// On enleve les resultats de la barre de recherche
+		this.SearchBar.current.clear()
 	}
 
 	// Méthode permettant d'ouvrir le modale d'une bière
@@ -113,7 +117,7 @@ class App extends React.Component {
 	render() {
 		return (
 			<>
-				<SearchBar closeBlock={this.closeBlock} onBeerClick={this.onBeerClick} onSearchResultClick={this.onSearchResultClick} />
+				<SearchBar ref={this.SearchBar} closeBlock={this.closeBlock} onBeerClick={this.onBeerClick} onSearchResultClick={this.onSearchResultClick} />
 
 				<CityBar ref={this.CityBar} onBreweryClick={this.onBreweryClick} />
 
