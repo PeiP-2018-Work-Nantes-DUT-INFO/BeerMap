@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://github.com/PeiP-2018-Work-Nantes-DUT-INFO/BeerMap">
-    <img width="200" alt="Logo" src="../logo.png">
+    <img width="200" alt="Logo" src="logo.png">
   </a>
 </p>
 
