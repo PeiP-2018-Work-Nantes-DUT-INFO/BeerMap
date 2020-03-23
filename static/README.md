@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://github.com/PeiP-2018-Work-Nantes-DUT-INFO/BeerMap">
-    <img width="250" alt="Logo" src="../logo.png">
+    <img width="200" alt="Logo" src="../logo.png">
   </a>
 </p>
 
@@ -12,9 +12,11 @@ Beer Map est une application web permettant de découvrir des brasseries et des 
 
 Avant de pouvoir utiliser l'application, il faut lancer le serveur qui se trouve dans le répertoire parent.
 
-Ensuite, il faut télécharger les librairies nécéssaire au projet avec : `yarn`
+Ensuite, il faut télécharger les librairies nécéssaire au projet.
+  Nous utilisons `yarn` comme gestionnaire de dépendances.
+  Pour télécharger les librairies, tapez `yarn` dans une invite de commande.
 
-Enfin, pour compiler l'application il faut lancer : `yarn build`
+Enfin, pour compiler l'application, éxécutez `yarn build` dans l'invite de commande.
 
 Une fois la compilation réalisé, vous pouvez accéder à [`http://localhost:3000`](http://localhost:3000).
 
