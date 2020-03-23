@@ -24,6 +24,22 @@ router.get('/brewery-name/:name', function (req, res) {
     geocodeController.findByBreweryName(req, res);
 });
 
+// Ajouter un géocode
+router.post('/', function (req, res) {
+    geocodeController.create(req,res);
+});
+
+// Mettre à jour un géocode
+router.put('/id/:id', function (req, res) {
+    geocodeController.update(req, res)
+});
+
+// Supprimer un géocode
+router.delete('/id/:id', function (req, res) {
+    geocodeController.deleteById(req, res)
+});
+
+
 /*------------------------------------------------------------*/
 
 // N'utilise pas notre API REST mais utilise une API externe pour trouver une ville

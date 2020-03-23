@@ -12,11 +12,11 @@ Beer Map est une application web permettant de découvrir des brasseries et des 
 
 Avant de pouvoir utiliser l'application, il faut lancer le serveur qui se trouve dans le répertoire parent.
 
-Ensuite, il faut télécharger les librairies nécéssaire au projet :
+Ensuite, il faut télécharger les librairies nécessaire au projet :
 - Nous utilisons `yarn` comme gestionnaire de dépendances.
 - Pour télécharger les librairies, tapez `yarn` dans une invite de commande.
 
-Enfin, pour compiler l'application, éxécutez `yarn build` dans l'invite de commande.
+Enfin, pour compiler l'application, exécutez `yarn build` dans l'invite de commande.
 
 Une fois la compilation réalisé, vous pouvez accéder à [`http://localhost:3000`](http://localhost:3000).
 

@@ -25,4 +25,20 @@ router.get('/city/:city', function (req, res) {
     breweryController.findAllByCity(req, res);
 });
 
+// Ajouter une brasserie
+router.post('/', function (req, res) {
+    breweryController.create(req,res);
+});
+
+// Mettre à jour une brasserie
+router.put('/id/:id', function (req, res) {
+    breweryController.update(req, res)
+});
+
+// Supprimer une brasserie
+router.delete('/id/:id', function (req, res) {
+    breweryController.deleteById(req, res)
+});
+
+
 module.exports = router;

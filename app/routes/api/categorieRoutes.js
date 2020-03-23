@@ -24,10 +24,13 @@ router.get('/name/:name', function (req, res) {
 router.post('/', function (req, res) {
     categorieController.create(req,res);
 });
+
+// Mettre à jour une catégorie
 router.put('/id/:id', function (req, res) {
     categorieController.update(req, res)
 });
 
+// Supprimer une catégorie
 router.delete('/id/:id', function (req, res) {
     categorieController.deleteById(req, res)
 });
