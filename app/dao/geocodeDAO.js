@@ -12,6 +12,7 @@ class GeocodeDAO {
         this.common = new daoCommon();
     }
 
+    // Trouver tout les géocodes
     findAll() {
         const sqlRequest = "SELECT * FROM geocode";
 
@@ -20,6 +21,7 @@ class GeocodeDAO {
             .catch(err => err);
     };
 
+    // Trouver un géocode par son Id
     findById(id) {
         id = parseInt(id); // on vérifie que l'id fourni peut bien être casté en entier
         if(isNaN(id)){
@@ -33,6 +35,7 @@ class GeocodeDAO {
             .catch(err => err);
     };
 
+    // Trouver le géocode d'une brasserie par l'ID de la brasserie
     findByBreweryId(brewery_id) {
         brewery_id = parseInt(brewery_id); // on vérifie que l'id fourni peut bien être casté en entier
         if(isNaN(brewery_id)){
@@ -46,6 +49,7 @@ class GeocodeDAO {
             .catch(err => err);
     };
 
+    // Trouver le géocode d'une brasserie par le nom de la brasserie
     findByBreweryName(name) {
         let sqlParams = {$name: name};
         let sqlRequest = "SELECT g.id, g.brewery_id, g.latitude, g.longitude, g.accuracy, g.coordinates FROM geocode g, brewery b WHERE g.brewery_id = b.id AND b.breweries = $name COLLATE NOCASE";

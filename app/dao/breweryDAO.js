@@ -12,6 +12,7 @@ class BreweryDAO {
         this.common = new daoCommon();
     }
 
+    // Trouver toutes les brasseries
     findAll() {
         const sqlRequest = "SELECT * FROM brewery";
         return this.common.findAll(sqlRequest)
@@ -19,6 +20,7 @@ class BreweryDAO {
             .catch(err => err);
     };
 
+    // Trouver les brasseries dont le nom en paramètre est inclus dans le nom de la brasserie
     findAllByName(name){
         let sqlRequest = "SELECT * FROM brewery WHERE UPPER(breweries) LIKE '%"+name+"%' ORDER BY breweries ASC LIMIT 5"
         return this.common.findAll(sqlRequest)
@@ -26,6 +28,7 @@ class BreweryDAO {
             .catch(err => err);
     }
 
+    // Trouver la brasserie d'un certain id
     findById(id) {
         id = parseInt(id); // on vérifie que l'id fourni peut bien être casté en entier
         if(isNaN(id)){
@@ -39,6 +42,7 @@ class BreweryDAO {
             .catch(err => err);
     };
 
+    // Trouver la brasserie d'un certain nom
     findByName(name) {
         let sqlRequest = "SELECT * FROM brewery WHERE breweries=$name COLLATE NOCASE";
         let sqlParams = {$name: name};
@@ -47,6 +51,7 @@ class BreweryDAO {
             .catch(err => err);
     };
 
+    // Trouver les brasseries d'une certaine ville
     findAllByCity(city) {
         let sqlParams = {$city: city};
         const sqlRequest = "SELECT * FROM brewery WHERE city = $city COLLATE NOCASE"
