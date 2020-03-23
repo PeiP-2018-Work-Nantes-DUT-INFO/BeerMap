@@ -1,4 +1,4 @@
-<span style="display:block;text-align:center;width: 100px;height: 100px;">![Logo](../logo.png)</span>
+<span style="display:block;text-align:center">![Logo](../logo.png | width=100)</span>
 
 # Fonctionnalités
 
