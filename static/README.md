@@ -13,14 +13,14 @@ Pour utiliser notre application, vous pouvez commencer par :
 
 Des boîtes s’ouvriront sur l’écran, avec les informations relatives à votre recherche.
 
-Au vue des données qui ne sont pas tout le temps bien remplies nous vous conseillons de faire la recherche des éléments suivants :
+Au vu des données qui ne sont pas tout le temps bien remplies nous vous conseillons de faire la recherche des éléments suivants :
 
 - Ville : London, England ou San Francisco, California
 - Bière : Hardcore IPA ou Dragonhead Stout
 - Brasserie : BrewDog Ltd ou Orkney Brewery
 - Catégorie : North American Ale ou British Ale
 
-Lors d’une recherche de catégorie ou d’une bière, vous ne serez pas amener sur la position géographique de la bière. Cependant vous pouvez cliquer, dans les informations de la bière, sur le nom de la brasserie pour vous déplacer automatiquement sur la carte.
+Lors d’une recherche de catégorie ou d’une bière, vous ne serez pas amené sur la position géographique de la bière. Cependant vous pouvez cliquer, dans les informations de la bière, sur le nom de la brasserie pour vous déplacer automatiquement sur la carte.
 
 # Architecture de l’application
 
@@ -32,7 +32,7 @@ A la racine du dossier, nous avons ainsi le serveur. Dans le dossier static, nou
 - BreweryBar : Panel affiché à droite de l’écran pour afficher les informations d’une brasserie (nom, adresse, téléphone, site web s’il existe, bières...).
 - CategoryBar : Panel affiché à droite pour présenter toutes les bières appartenant à une catégorie.
 - CityBar : Panel affiché à gauche pour afficher toutes les informations d’une ville (nom, météo, brasseries).
-- SearchBar : Barre de recherche qui s’affiche au dessus. - Dans le dossier Result, se trouve 4 composants qui permettent l’affichage des résultats de la barre de recherche.
+- SearchBar : Barre de recherche qui s’affiche au-dessus. - Dans le dossier Result, se trouvent 4 composants qui permettent l’affichage des résultats de la barre de recherche.
 
 
 # Choix de développement
@@ -40,7 +40,10 @@ A la racine du dossier, nous avons ainsi le serveur. Dans le dossier static, nou
 Pour réaliser cette application, nous avons utilisé le framework de Facebook nommé React.js. Pour la carte, nous avons utilisé MapBox qui est un service de cartographie.<br>
 Nous avons utilisé git pour sauvegarder les fichiers, et nous avons utilisé Vs Code avec LiveShare pour pouvoir développer en temps réel.
 
-# API utilisées 
+# APIs utilisées 
 - Nous avons utilisé notre serveur REST développé pour le cour M4105C.
 - Nous avons utilisé OpenWeatherMap pour récupérer la météo des villes.
 - Coté serveur, nous avons utilisé ArcGIS pour récupérer la position des villes recherchées.
+
+# WebSocket
+Nous avons utilisé des websocket pour la partie recherche de l’application. C’est à dire que l’échange lors d’une recherche entre le serveur et le client se fait en websocket et pour tous les autres appels, il s’agit d’un fetch à l’API REST.
