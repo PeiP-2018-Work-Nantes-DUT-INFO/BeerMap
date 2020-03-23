@@ -20,12 +20,16 @@ class App extends React.Component {
 
 	constructor(props) {
 		super(props)
+
+		// Modèle de donnée utilisé pour ce composant
+		// Par défaut, la carte est centrée sur la France
 		this.state = {
 			center: [2, 47],
 			zoom: 5,
 			brewerie: []
 		}
 
+		// Référence utilisée pour faire appel au fonction des composants
 		this.CityBar = React.createRef()
 		this.BreweryBar = React.createRef()
 		this.CategoryBar = React.createRef()
@@ -33,6 +37,7 @@ class App extends React.Component {
 	}
 
 	componentDidMount() {
+		// Lorsque ce composant est pret, on récupère toutes les brasseries disponible est on les affiches
 		Brewerie.findAll().then(data => {
 			this.setState({ brewerie: data.slice(1) })
 		}).catch(err => {
@@ -40,10 +45,13 @@ class App extends React.Component {
 		})
 	}
 
+	// Méthode permettant de centrer la carte sur un point géographique
 	setMapCenter = (lon, lat) => {
 		this.setState({ center: [lon, lat], zoom: 11 })
 	}
 
+	// Méthode appelé lorsqu'il y a une recherche
+	// Elle est passé en propriété pour la SearchBar
 	onSearchResultClick = search_val => {
 		switch (search_val.type) {
 			case "city":
@@ -63,19 +71,24 @@ class App extends React.Component {
 		}
 	}
 
+	// Méthode permettant de fermer tous les blocs ouvert ainsi que les barres pour reouvrir les blocs
 	closeBlock = _ => {
 		this.CityBar.current.close(true)
 		this.CategoryBar.current.close(true)
 		this.BreweryBar.current.close(true)
 	}
 
+	// Méthode permettant d'ouvrir le bloc Brasserie, Ville, et de centrer la carte
 	onBreweryClick = props => {
+
+		// On récupère les informations
 		const info = (props.feature && props.feature.properties) || props;
 
+		// On parse les coordonnées et on centre la carte
 		const [y, x] = info.coordinates.split(",");
-
 		this.setMapCenter(x, y);
 
+		// On construit l'objet représentant une ville
 		const ville = {
 			location: {
 				x: x,
@@ -84,19 +97,22 @@ class App extends React.Component {
 			address: info.city
 		}
 
+		// On affiche le bloc Brasserie
 		this.BreweryBar.current.open({ info });
 
+		// On affiche le bloc ville
 		this.CityBar.current.open({ ville });
 	}
 
+	// Méthode permettant d'ouvrir le modale d'une bière
 	onBeerClick = beer => {
 		this.BeerCard.current.open(beer)
 	}
 
+	// Méthode permettant le rendu
 	render() {
 		return (
-			<div className="AppBlock">
-
+			<>
 				<SearchBar closeBlock={this.closeBlock} onBeerClick={this.onBeerClick} onSearchResultClick={this.onSearchResultClick} />
 
 				<CityBar ref={this.CityBar} onBreweryClick={this.onBreweryClick} />
@@ -110,17 +126,13 @@ class App extends React.Component {
 				<Map
 					style="mapbox://styles/mapbox/streets-v9"
 					center={this.state.center}
-					zoom={[this.state.zoom]}
-					containerStyle={{
-						display: "block",
-						width: "100%",
-						height: "100%"
-					}}>
+					zoom={[this.state.zoom]}>
 
 					<Layer
 						type="symbol"
 						layout={{ "icon-image": "beer-15" }}>
 
+						{/* Boucle pour afficher tous les icones de bière qui représente les brasseries */}
 						{this.state.brewerie.map((el, i) => {
 							return <Feature key={i} onClick={this.onBreweryClick} properties={el} coordinates={[el.coordinates.split(",")[1], el.coordinates.split(",")[0]]} />
 						})}
@@ -128,9 +140,10 @@ class App extends React.Component {
 					</Layer>
 
 				</Map>
-			</div>
+			</>
 		)
 	}
 }
 
-ReactDOM.render(<App />, document.getElementById('root'));
+// On fais le rendu de l'application dans la div#BeerMap
+ReactDOM.render(<App />, document.getElementById('BeerMap'));

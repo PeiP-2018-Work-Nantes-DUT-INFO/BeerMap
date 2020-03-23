@@ -11,6 +11,10 @@ export default class CityBar extends React.Component {
 
 	constructor(props) {
 		super(props)
+		/**
+		 * Mise en place de l'état de l'objet, dès que l'état est modifié le composant sera rafraichi sur la page
+		 * Les autres éléments correspondent aux informations de la ville
+		 */
 		this.state = {
 			hidden: true,
 			ville: {
@@ -30,6 +34,7 @@ export default class CityBar extends React.Component {
 	}
 
 	searchWeather = _ => {
+		// Recherche de la météo de la ville et mise à jour des informations affichées
 		Weather
 			.searchByGeoCord(this.state.ville.location.x, this.state.ville.location.y)
 			.then(data => {
@@ -44,6 +49,7 @@ export default class CityBar extends React.Component {
 	}
 
 	close = def => {
+		// Ferme le panel
 		this.setState({ hidden: true })
 
 		if (def === true) {
@@ -53,8 +59,8 @@ export default class CityBar extends React.Component {
 
 	open = ({ ville }) => {
 
-		if (ville !== undefined) {
-
+		if (ville !== undefined) { // Si les informations sur la ville sont existantes
+			// Mise à jour des informations affichées par celles de la ville et recherche de la météo
 			this.setState({ ville: ville }, _ => {
 				Brewerie.findAllByCity(this.state.ville.address.split(",")[0]).then(data => {
 					this.setState({ breweries: (Array.isArray(data) && data) || [] })
@@ -62,11 +68,12 @@ export default class CityBar extends React.Component {
 				this.searchWeather()
 			})
 		}
-
+		// Ouverture du panel
 		this.setState({ hidden: false, hasSearched: true })
 	}
 
 	onBreweryClick = brewery => {
+		// Si la personne clique sur une des brasseries affichées dans le panel, affichage des informations de la brasserie
 		this.props.onBreweryClick(brewery)
 	}
 

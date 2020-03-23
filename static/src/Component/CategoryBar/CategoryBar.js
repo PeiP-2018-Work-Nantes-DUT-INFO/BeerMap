@@ -10,6 +10,10 @@ export default class CategoryBar extends React.Component {
 
 	constructor(props) {
 		super(props)
+		/**
+		 * Mise en place de l'état de l'objet, dès que l'état est modifié le composant sera rafraichi sur la page
+		 * Les autres éléments correspondent aux informations de la catégorie
+		 */
 		this.state = {
 			hidden: true,
 			name: "",
@@ -18,17 +22,19 @@ export default class CategoryBar extends React.Component {
 	}
 
 	close = def => {
+		// Ferme le panel
 		this.setState({ hidden: true })
 
 		if (def === true) {
+			// Ferme la barre sur le côté
 			this.setState({ hasSearched: false })
 		}
 	}
 
 	open = ({ info }) => {
 
-		if (info !== undefined) {
-			console.log(info)
+		if (info !== undefined) { // Si les informations de la catégories existent
+			// Mise à jour des informations affichées par celles de la catégorie
 			this.setState({
 				name: info.cat_name,
 			}, _ => {
@@ -38,7 +44,7 @@ export default class CategoryBar extends React.Component {
 				})
 			})
 		}
-
+		// Ouverture du panel
 		this.setState({ hidden: false })
 	}
 

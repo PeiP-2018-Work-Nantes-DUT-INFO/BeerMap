@@ -10,6 +10,10 @@ export default class BreweryBar extends React.Component {
 
 	constructor(props) {
 		super(props)
+		/**
+		 * Mise en place de l'état de l'objet, dès que l'état est modifié le composant sera rafraichi sur la page
+		 * Les autres éléments correspondent aux informations de la brasserie
+		 */
 		this.state = {
 			hidden: true,
 			name: "",
@@ -26,6 +30,7 @@ export default class BreweryBar extends React.Component {
 	}
 
 	close = def => {
+		// Ferme le panel de la brasserie
 		this.setState({ hidden: true })
 
 		if (def === true) {
@@ -34,9 +39,8 @@ export default class BreweryBar extends React.Component {
 	}
 
 	open = ({ info }) => {
-
-		if (info !== undefined) {
-
+		if (info !== undefined) { // Si les informations sont définies
+			// Ouvre le panel de la brasserie et met à jour les informations affichées avec celles de la brasserie
 			this.setState({
 				bid: info.bid,
 				name: info.breweries,
@@ -47,18 +51,18 @@ export default class BreweryBar extends React.Component {
 				phone: info.phone,
 				website: info.website,
 			}, _ => {
-				console.log(info)
 				Beer.findAllByBrewery(info.bid || info.id).then(beers => {
 					this.setState({ beers })
 				})
 			})
 
 		}
-
+		// Affiche le panel
 		this.setState({ hidden: false, hasSearched: true })
 	}
 
 	onBeerClick = beer => {
+		// Affiche la modale de la bière
 		this.props.onBeerClick(beer)
 	}
 

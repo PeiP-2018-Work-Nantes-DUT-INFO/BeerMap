@@ -46,7 +46,7 @@ Lors d’une recherche de catégorie ou d’une bière, vous ne serez pas amené
 
 - Récupérer la météo d'une ville : *https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}*
 
-La recherche étant effectuée en websocket, il n’y a pas de points d’entrée pour celle-ci.
+La recherche étant effectuée en websocket, il n’y a pas de point d’entrée pour celle-ci.
 
 ## Architecture de l’application
 
@@ -67,12 +67,12 @@ Pour réaliser cette application, nous avons utilisé le framework de Facebook n
 Nous avons utilisé git pour sauvegarder les fichiers, et nous avons utilisé Vs Code avec LiveShare pour pouvoir développer en temps réel.
 
 ## APIs utilisées 
-- Nous avons utilisé notre serveur REST développé pour le cour M4105C.
+- Nous avons utilisé notre serveur REST développé pour le cours M4105C.
 - Nous avons utilisé OpenWeatherMap pour récupérer la météo des villes.
-- Coté serveur, nous avons utilisé ArcGIS pour récupérer la position des villes recherchées.
+- Côté serveur, nous avons utilisé ArcGIS pour récupérer la position des villes recherchées.
 
 ## WebSocket
-Nous avons utilisé des websocket pour la partie recherche de l’application. C’est à dire que l’échange lors d’une recherche entre le serveur et le client se fait en websocket et pour tous les autres appels, il s’agit d’un fetch à l’API REST.
+Nous avons utilisé des websockets pour la partie recherche de l’application. C’est-à-dire que l’échange lors d’une recherche entre le serveur et le client se fait en websocket et pour tous les autres appels, il s’agit d’un fetch à l’API REST.
 
 ## Auteurs
-Ce projet a été réalise par Maxence Leguede, Nathan Rocher, et Josik Sallaud.
+Ce projet a été réalisé par Maxence Leguede, Nathan Rocher, et Josik Sallaud.

@@ -32,18 +32,17 @@ export default class BeerCard extends React.Component {
 	}
 
 	open = (beer) => {
-		
+		// Ouvre la modale en mettant à jour l'état de celle-ci et en ajoutant les informations de la bière à afficher.
 		this.setState({ hidden: false, ...beer }, _ => {
 			Brewerie.findById(beer.brewery_id).then(b => {
-				console.log(b)
 				this.setState({ brasserie: b })
 			})
 		})
 	}
 
 	openBrasserie = _ => {
-		this.close()
-		this.props.onBreweryClick(this.state.brasserie)
+		this.close() // Ferme la modale
+		this.props.onBreweryClick(this.state.brasserie) // Ouvre les informations sur la brasserie
 	}
 
 	render() {

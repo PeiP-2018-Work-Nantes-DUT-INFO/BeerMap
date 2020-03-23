@@ -13,6 +13,10 @@ export default class SearchBar extends React.Component {
 
 	constructor(props) {
 		super(props)
+		/**
+		 * Mise en place de l'état de l'objet, dès que l'état est modifié le composant sera rafraichi sur la page
+		 * Value : Correspond à ce que la personne a écrit dans la search bar
+		 */
 		this.state = {
 			result: [],
 			value: ""
@@ -23,6 +27,7 @@ export default class SearchBar extends React.Component {
 	}
 
 	componentDidMount() {
+		// Recherche des villes, bières, brasseries et catégories correspondantes à ce que la personne recherche et mise à jour des informations affichées
 		searchResult(data => {
 			var city = Array.isArray(data.city) ? data.city.map(el => { el.type = "city"; return el }) : []
 			var beer = Array.isArray(data.beer) ? data.beer.map(el => { el.type = "beer"; return el }) : []
@@ -35,15 +40,18 @@ export default class SearchBar extends React.Component {
 
 
 	clear = _ => {
+		// Remet à 0 la search bar
 		this.setState({ value: "", result: [] })
 	}
 
 	onSearchChange = e => {
-		clearTimeout(this.timer)
-
+		// Quand l'input est modifié
+		clearTimeout(this.timer) // Clear du timer
+		//On met à jour la valeur de l'input
 		this.setState({ value: e.target.value })
-
+		// Si la valeur est supérieure à 4 caractères (pour éviter le spam de requêtes)
 		if (e.target.value.length > 4) {
+			// Mise à jour du timer et recherche des résultats
 			this.timer = setTimeout(_ => {
 				this.onSearch({ charCode: 13 })
 			}, 500)
@@ -51,17 +59,19 @@ export default class SearchBar extends React.Component {
 	}
 
 	onSearch = e => {
+		// Quand l'utilisateur appuie sur entrée et que la valeur est supérieure à 4 caractères (pour éviter le spam de requêtes)
 		if (e.charCode === 13 && this.input.current.value.length > 3) {
-
-			this.props.closeBlock()
-
+			// Ferme tous les blocks étant sur la carte
+			this.props.closeBlock() // Fait appel a la fonction de index.js (Composant parent) 
+			// Recherche effectuée
 			search(this.input.current.value);
 		}
 	}
 
 	onSearchResultClick = data => {
+		// Remise à 0 de la search bar
 		this.clear()
-
+		// Affiche le panel correspondant à ce que l'utilisateur a cliqué
 		this.props.onSearchResultClick(data)
 	}
 
