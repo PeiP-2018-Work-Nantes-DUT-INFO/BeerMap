@@ -12,13 +12,13 @@ Beer Map est une application web permettant de découvrir des brasseries et des 
 
 Avant de pouvoir utiliser l'application, il faut lancer le serveur qui se trouve dans le répertoire parent.
 
-Ensuite, il faut télécharger les librairies nécessaire au projet :
+Ensuite, il faut télécharger les librairies nécessaires au projet :
 - Nous utilisons `yarn` comme gestionnaire de dépendances.
 - Pour télécharger les librairies, tapez `yarn` dans une invite de commande.
 
 Enfin, pour compiler l'application, exécutez `yarn build` dans l'invite de commande.
 
-Une fois la compilation réalisé, vous pouvez accéder à [`http://localhost:3000`](http://localhost:3000).
+Une fois la compilation réalisée, vous pouvez accéder à [`http://localhost:3000`](http://localhost:3000).
 
 Pour utiliser notre application, vous pouvez commencer par :
 - Faire une recherche d’une ville, d’une bière, d’une brasserie, ou d’une catégorie de bière. 
@@ -63,7 +63,7 @@ A la racine du dossier, nous avons ainsi le serveur. Dans le dossier static, nou
 
 ## Choix de développement
 
-Pour réaliser cette application, nous avons utilisé le framework de Facebook nommé React.js. Pour la carte, nous avons utilisé MapBox qui est un service de cartographie.<br>
+Pour réaliser cette application, nous avons utilisé le framework de Facebook nommé React.js, qui permet une gestion dynamique de la page sans avoir besoin de la rafraîchir. ReactJS fonctionne également avec des composants permettant une meilleure lisibilité du code ainsi qu'une meilleure maintenance de celui-ci. Pour la carte, nous avons utilisé MapBox qui est un service de cartographie.<br>
 Nous avons utilisé git pour sauvegarder les fichiers, et nous avons utilisé Vs Code avec LiveShare pour pouvoir développer en temps réel.
 
 ## APIs utilisées 

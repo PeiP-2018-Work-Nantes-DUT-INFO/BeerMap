@@ -1,5 +1,5 @@
 const GeocodeDAO = require('../dao/geocodeDAO');
-const geocodeApi = require('../../geocodeApi');
+const arcgis = require('../extern/arcgis');
 
 /* Load Controller Common function */
 const ControllerCommon = require('./common/controllerCommon');// fonctions communes pour le contrôleur
@@ -56,7 +56,7 @@ class GeocodeController {
 
     findCity(req, res) {
         let name = req.params.name;
-        geocodeApi.searchByName(name)
+        arcgis.searchByName(name)
             .then(this.common.findSuccess(res))
             .catch(this.common.findError(res));
     };

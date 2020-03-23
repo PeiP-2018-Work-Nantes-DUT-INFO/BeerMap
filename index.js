@@ -7,26 +7,20 @@ const io = require('socket.io')(http);
 const database = require('./app/config/dbconfig');
 const port = 3000;
 
-const geocodeAPI = require("./geocodeApi");
+const arcgis = require("./app/extern/arcgis");
 const BeerDAO_file = require('./app/dao/beerDAO');
 const BeerDAO = new BeerDAO_file();
 const BreweryDAO_file = require('./app/dao/breweryDAO');
 const BreweryDAO = new BreweryDAO_file();
 const CategoryDAO_file = require('./app/dao/categorieDAO');
 const CategoryDAO = new CategoryDAO_file();
+
 database
     .init
     .then((db) => {
         app.use(cors());
         app.use(bodyParser.urlencoded({ extended: false }));
         app.use(bodyParser.json());
-
-        ///////////////////////////////////////////////////////////////////
-        app.use(function (req, res, next) {
-            console.log('Accès a : ', req.method, " - ", req.originalUrl)
-            next()
-        })
-        ///////////////////////////////////////////////////////////////////
 
         /* Router configuration */
         app.use('/api', require('./app/routes/router'));
@@ -41,7 +35,7 @@ database
                 
                 console.log("Recherche : ", search)
 
-                const city = geocodeAPI.searchByName(search)
+                const city = arcgis.searchByName(search)
                 const beer = BeerDAO.findAllByName(search)
                 const brewery = BreweryDAO.findAllByName(search)
                 const category = CategoryDAO.findAllByName(search)

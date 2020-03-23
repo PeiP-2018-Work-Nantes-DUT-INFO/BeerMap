@@ -10,11 +10,9 @@ function searchByName(search) {
 
         const url = base_url + "&singleLine=" + search + "&maxLocations=3"
 
-        axios.get(url)
-            .then(data =>{
-                resolve(data.data.candidates)
-            })
-            .catch(reject)
+        axios.get(url).then(data => {
+            resolve(data.data.candidates)
+        }).catch(reject)
     })
 }
 

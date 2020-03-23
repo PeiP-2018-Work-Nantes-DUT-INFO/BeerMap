@@ -10,6 +10,11 @@ export default class BeerCard extends React.Component {
 
 	constructor(props) {
 		super(props)
+		/**
+		 * Mise en place de l'état de l'objet, dès que l'état est modifié le composant sera rafraichi sur la page
+		 * hidden : Indique sur la modale doit être affichée ou non
+		 * Name : Indique le titre à afficher dans la modale
+		 */
 		this.state = {
 			hidden: true,
 			name: "BeerCard"
@@ -27,7 +32,7 @@ export default class BeerCard extends React.Component {
 	}
 
 	open = (beer) => {
-		console.log(beer)
+		
 		this.setState({ hidden: false, ...beer }, _ => {
 			Brewerie.findById(beer.brewery_id).then(b => {
 				console.log(b)
