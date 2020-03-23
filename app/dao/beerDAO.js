@@ -56,7 +56,7 @@ class BeerDAO {
             .catch(err => err);
     };
 
-    // Trouver les bières dont le nom est inclus dans le nom de la bière donnée en paramètre "name"
+    // Trouver les bières dont le nom est inclus dans le nom donné en paramètre "name"
     findAllByName(name){
         let sqlRequest = "SELECT * FROM beer WHERE UPPER(name) LIKE '%"+name+"%' ORDER BY name ASC LIMIT 5"
         return this.common.findAll(sqlRequest)
@@ -64,6 +64,7 @@ class BeerDAO {
             .catch(err => err);
     }
 
+    // Trouver les bières ayant un degré d'alcool supérieur ou égal au volume ene paramètre
     findByVolumeHigherThan(volume) {
         volume = parseInt(volume); // on vérifie que le volume fourni peut bien être casté en entier
         if(isNaN(volume)){
@@ -77,6 +78,7 @@ class BeerDAO {
             .catch(err => err);
     };
 
+    // Trouver les bières ayant un degré d'alcool inférieur ou égal au volume ene paramètre
     findByVolumeLowerThan(volume) {
         volume = parseInt(volume); // on vérifie que le volume fourni peut bien être casté en entier
         if(isNaN(volume)){
@@ -90,6 +92,7 @@ class BeerDAO {
             .catch(err => err);
     };
 
+    // L
     findByCountry(country) {
         let sqlRequest = "SELECT * FROM beer WHERE country = $country  COLLATE NOCASE";
         let sqlParams = {$country: country};
