@@ -32,7 +32,7 @@ A la racine du dossier, nous avons ainsi le serveur. Dans le dossier static, nou
 - BreweryBar : Panel affiché à droite de l’écran pour afficher les informations d’une brasserie (nom, adresse, téléphone, site web s’il existe, bières...).
 - CategoryBar : Panel affiché à droite pour présenter toutes les bières appartenant à une catégorie.
 - CityBar : Panel affiché à gauche pour afficher toutes les informations d’une ville (nom, météo, brasseries).
-- SearchBar : Barre de recherche qui s’affiche au-dessus. - Dans le dossier Result, se trouvent 4 composants qui permettent l’affichage des résultats de la barre de recherche.
+- SearchBar : Barre de recherche qui s’affiche au-dessus. Dans le dossier Result, se trouvent 4 composants qui permettent l’affichage des résultats de la barre de recherche.
 
 
 # Choix de développement
