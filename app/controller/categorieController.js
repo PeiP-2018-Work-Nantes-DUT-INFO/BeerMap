@@ -75,7 +75,7 @@ class CategorieController {
                 res.status(201);
                 res.json(categorie);
             })
-            .catch(err => console.log(err));
+            .catch(this.common.serverError(res));
 
     };
 }
