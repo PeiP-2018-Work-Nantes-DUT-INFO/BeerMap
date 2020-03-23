@@ -28,7 +28,7 @@ Des boîtes s’ouvriront sur l’écran, avec les informations relatives à vot
 
 Au vu des données qui ne sont pas tout le temps bien remplies nous vous conseillons de faire la recherche des éléments suivants :
 
-- Ville : *London, England* ou *San Francisco, California*
+- Ville : *Furiani, France* ou *San Francisco, California*
 - Bière : *Hardcore IPA* ou *Dragonhead Stout*
 - Brasserie : *BrewDog Ltd* ou *Orkney Brewery*
 - Catégorie : *North American Ale* ou *British Ale*
