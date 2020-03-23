@@ -10,7 +10,7 @@ Beer Map est une application web permettant de découvrir des brasseries et des 
 
 ## Application web
 
-Vous pouvez trouver le rapport de l'application web M4103C dans le dossier `static`.
+Vous pouvez trouver l'application ainsi que le rapport de l'application web M4103C dans le dossier `static`.
 
 ## Auteurs
 Ce projet a été réalisé par Maxence Leguede, Nathan Rocher, et Josik Sallaud.
