@@ -105,6 +105,42 @@ class BeerController {
             res.json(err);
         }    
     };
+
+    create(req, res) {
+        let beer = new Beer(req.body);
+        return this.beerDAO.create(beer)
+            .then(() => this.beerDAO.findById(beer.id))
+            .then((beer) => {
+                res.status(201);
+                res.json(beer);
+            })
+            .catch(this.common.serverError(res));
+
+    }
+
+    deleteById(req, res) {
+        let id = req.params.id;
+
+        this.beerDAO.deleteById(id)
+            .then(this.common.editSuccess(res))
+            .catch(this.common.serverError(res));
+    };
+
+    update(req, res) {
+        let beer = new Beer();
+        beer = Object.assign(beer, req.body);
+
+
+        return this.beerDAO.update(beer)
+            .then(this.beerDAO.findById(req.params.id))
+            .then(() => this.beerDAO.findById(beer.id))
+            .then((beer) => {
+                res.status(201);
+                res.json(beer);
+            })
+            .catch(this.common.serverError(res));
+
+    };
 }
 
 

@@ -37,11 +37,14 @@ Lors d’une recherche de catégorie ou d’une bière, vous ne serez pas amené
 
 ## Points d’entrée
 
-- Récupérer toutes les bières d’une catégorie : *http://127.0.0.1:3000/api/beer/categorie/${id}*
-- Récupérer une bière : *http://127.0.0.1:3000/api/beer/brewery/{id}*
-- Récupérer toutes les brasseries :  *http://127.0.0.1:3000/api/brewery/*
-- Récupérer les brasseries d’une ville : *http://127.0.0.1:3000/api/brewery/city/{name}*
-- Récupérer une brasserie : *http://127.0.0.1:3000/api/brewery/id/{id}*
+- Récupérer toutes les bières d’une catégorie : *http://localhost:3000/api/beer/categorie/{categorie_id}*
+- Récupérer les bières d'une brasserie : *http://localhost:3000/api/beer/brewery/{brewery_id}*
+
+- Récupérer toutes les brasseries :  *http://localhost:3000/api/brewery/*
+- Récupérer les brasseries d’une ville : *http://localhost:3000/api/brewery/city/{name}*
+- Récupérer une brasserie : *http://localhost:3000/api/brewery/id/{id}*
+
+- Récupérer une bière : *https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&units=metric&lang=fr*
 
 La recherche étant effectuée en websocket, il n’y a pas de points d’entrée pour celle-ci.
 

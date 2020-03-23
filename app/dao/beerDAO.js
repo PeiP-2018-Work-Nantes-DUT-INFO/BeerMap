@@ -121,6 +121,49 @@ class BeerDAO {
             .then(row => row.map(beer => new Beer(beer)))
             .catch(err => err);
     };
+
+    // Ajout d'une bière
+    create(categorie) {
+        const sqlRequest = "INSERT INTO beer(" +
+            "name, id, brewery_id, cat_id, style_id,alcohol_by_volume,international_bitterness_units,standard_reference_method,universal_product_code,filepath,description,add_user,last_mod,style,category,brewer,address,city,state,country,coordinates,website) " +
+            "VALUES ($id,$catName,$lastMod)";
+            $name,
+            $id
+            $brewery_id
+            $cat_id
+            $style_id
+            $alcohol_by_volume,international_bitterness_units,standard_reference_method,universal_product_code,filepath,description,add_user,last_mod,style,category,brewer,address,city,state,country,coordinates,website
+        const sqlParams = {
+            $id: categorie.id,
+            $catName: categorie.catName,
+            $lastMod : categorie.lastMod
+        };
+        return this.common.run(sqlRequest, sqlParams);
+    };
+
+    // Suppression d'une bière
+    deleteById(id) {
+        let sqlRequest = "DELETE FROM categorie WHERE id=$id";
+        let sqlParams = {$id: id};
+        return this.common.run(sqlRequest, sqlParams);
+    };
+
+    // Mise à jour d'une bière
+    update(categorie) {
+        let sqlRequest = "UPDATE categorie SET " +
+            "cat_name=$catName, " +
+            "last_mod=$lastMod " +
+            "WHERE id=$id";
+
+        let sqlParams = {
+            $catName: categorie.catName,
+            $lastMod: categorie.lastMod,
+            $id: categorie.id
+        };
+        return this.common.run(sqlRequest, sqlParams);
+    };
+
+
 }
 
 module.exports = BeerDAO;

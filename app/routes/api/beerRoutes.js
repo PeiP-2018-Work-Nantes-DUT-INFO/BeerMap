@@ -49,4 +49,19 @@ router.get('/categorie/:categorie', function (req, res) {
     beerController.findByCategory(req, res);
 });
 
+// Ajouter une bière
+router.post('/', function (req, res) {
+    beerController.create(req,res);
+});
+
+// Mettre à jour une bière
+router.put('/id/:id', function (req, res) {
+    beerController.update(req, res)
+});
+
+// Supprimer une bière
+router.delete('/id/:id', function (req, res) {
+    beerController.deleteById(req, res)
+});
+
 module.exports = router;
