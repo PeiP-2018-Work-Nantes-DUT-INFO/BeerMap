@@ -86,7 +86,7 @@ export default class SearchBar extends React.Component {
 						onChange={this.onSearchChange}
 						onKeyPress={this.onSearch}
 						type="text"
-						placeholder="Rechercher une bière, une brasserie, une ville, ..." />
+						placeholder="Rechercher une bière, une brasserie, une ville, une catégorie, ..." />
 
 					{this.state.value
 						? <X onClick={this.clear} size={20} />
