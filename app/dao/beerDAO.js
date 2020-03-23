@@ -46,7 +46,8 @@ class BeerDAO {
             .then(row => row.map(beer => new Beer(beer)))
             .catch(err => err);
     }
-    
+
+    // Trouver la bière d'un certain nom
     findByName(name) {
         let sqlRequest = "SELECT * FROM beer WHERE name = $name COLLATE NOCASE"
         let sqlParams = {$name: name};
@@ -55,6 +56,7 @@ class BeerDAO {
             .catch(err => err);
     };
 
+    // Trouver les bières dont le nom est inclus dans le nom de la bière donnée en paramètre "name"
     findAllByName(name){
         let sqlRequest = "SELECT * FROM beer WHERE UPPER(name) LIKE '%"+name+"%' ORDER BY name ASC LIMIT 5"
         return this.common.findAll(sqlRequest)
