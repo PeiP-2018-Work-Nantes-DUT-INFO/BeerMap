@@ -130,7 +130,6 @@ class BeerController {
         let beer = new Beer();
         beer = Object.assign(beer, req.body);
 
-
         return this.beerDAO.update(beer)
             .then(this.beerDAO.findById(req.params.id))
             .then(() => this.beerDAO.findById(beer.id))

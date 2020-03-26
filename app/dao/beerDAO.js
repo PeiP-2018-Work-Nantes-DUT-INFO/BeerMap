@@ -24,24 +24,24 @@ class BeerDAO {
     // Trouver la bière d'un certain id
     findById(id) {
         id = parseInt(id); // on vérifie que l'id fourni peut bien être casté en entier
-        if(isNaN(id)){
-            throw new DaoError(31,"Integer required");
+        if (isNaN(id)) {
+            throw new DaoError(31, "Integer required");
         }
         let sqlRequest = "SELECT * FROM beer WHERE id=$id";
-        let sqlParams = {$id: id};
+        let sqlParams = { $id: id };
         return this.common.findOne(sqlRequest, sqlParams)
             .then(row => new Beer(row))
             .catch(err => err);
     };
-    
+
     // Trouver les bières d'une brasserie
     findAllByBrewery(brewery_id) {
         brewery_id = parseInt(brewery_id);
-        if(isNaN(brewery_id)){
+        if (isNaN(brewery_id)) {
             throw new DaoError(31, "Integer required");
         }
         let sqlRequest = "SELECT * FROM beer WHERE brewery_id=$brewery_id";
-        let sqlParams = {$brewery_id: brewery_id};
+        let sqlParams = { $brewery_id: brewery_id };
         return this.common.findAllWithParams(sqlRequest, sqlParams)
             .then(row => row.map(beer => new Beer(beer)))
             .catch(err => err);
@@ -50,15 +50,15 @@ class BeerDAO {
     // Trouver la bière d'un certain nom
     findByName(name) {
         let sqlRequest = "SELECT * FROM beer WHERE name = $name COLLATE NOCASE"
-        let sqlParams = {$name: name};
+        let sqlParams = { $name: name };
         return this.common.findOne(sqlRequest, sqlParams)
             .then(row => new Beer(row))
             .catch(err => err);
     };
 
     // Trouver les bières dont le nom en paramètre est inclus dans le nom de la bière
-    findAllByName(name){
-        let sqlRequest = "SELECT * FROM beer WHERE UPPER(name) LIKE '%"+name+"%' ORDER BY name ASC LIMIT 5"
+    findAllByName(name) {
+        let sqlRequest = "SELECT * FROM beer WHERE UPPER(name) LIKE '%" + name + "%' ORDER BY name ASC LIMIT 5"
         return this.common.findAll(sqlRequest)
             .then(row => row.map(beer => new Beer(beer)))
             .catch(err => err);
@@ -67,12 +67,12 @@ class BeerDAO {
     // Trouver les bières ayant un degré d'alcool supérieur ou égal au volume ene paramètre
     findByVolumeHigherThan(volume) {
         volume = parseInt(volume); // on vérifie que le volume fourni peut bien être casté en entier
-        if(isNaN(volume)){
-            throw new DaoError(31,"Integer required");
+        if (isNaN(volume)) {
+            throw new DaoError(31, "Integer required");
         }
 
         let sqlRequest = "SELECT * FROM beer WHERE alcohol_by_volume >= $volume";
-        let sqlParams = {$volume: volume};
+        let sqlParams = { $volume: volume };
         return this.common.findAllWithParams(sqlRequest, sqlParams)
             .then(row => row.map(beer => new Beer(beer)))
             .catch(err => err);
@@ -81,12 +81,12 @@ class BeerDAO {
     // Trouver les bières ayant un degré d'alcool inférieur ou égal au volume ene paramètre
     findByVolumeLowerThan(volume) {
         volume = parseInt(volume); // on vérifie que le volume fourni peut bien être casté en entier
-        if(isNaN(volume)){
-            throw new DaoError(31,"Integer required");
+        if (isNaN(volume)) {
+            throw new DaoError(31, "Integer required");
         }
-        
-        let sqlRequest = "SELECT * FROM beer WHERE alcohol_by_volume <= $volume";
-        let sqlParams = {$volume: volume};
+
+        let sqlRequest = "SELECT * FROM beer WHERE alcohol_by_volume <= $volume AND alcohol_by_volume != 0";
+        let sqlParams = { $volume: volume };
         return this.common.findAllWithParams(sqlRequest, sqlParams)
             .then(row => row.map(beer => new Beer(beer)))
             .catch(err => err);
@@ -95,8 +95,8 @@ class BeerDAO {
     // Trouver les bières venant d'un pays
     findByCountry(country) {
         let sqlRequest = "SELECT * FROM beer WHERE country = $country  COLLATE NOCASE";
-        let sqlParams = {$country: country};
-        return this.common.findOne(sqlRequest, sqlParams)
+        let sqlParams = { $country: country };
+        return this.common.findAllWithParams(sqlRequest, sqlParams)
             .then(row => row.map(beer => new Beer(beer)))
             .catch(err => err);
     };
@@ -104,7 +104,7 @@ class BeerDAO {
     // Trouver les bières venant d'une ville
     findByCity(city) {
         let sqlRequest = "SELECT * FROM beer WHERE city = $city COLLATE NOCASE";
-        let sqlParams = {$city: city};
+        let sqlParams = { $city: city };
         return this.common.findAllWithParams(sqlRequest, sqlParams)
             .then(row => row.map(beer => new Beer(beer)))
             .catch(err => err);
@@ -112,11 +112,11 @@ class BeerDAO {
 
     // Trouver les bières d'une catégorie
     findByCategory(categorie) {
-        if(isNaN(categorie)){
-            throw new DaoError(31,"Integer required");
+        if (isNaN(categorie)) {
+            throw new DaoError(31, "Integer required");
         }
         let sqlRequest = `SELECT * FROM beer WHERE cat_id = $categorie`;
-        let sqlParams = {$categorie: categorie};
+        let sqlParams = { $categorie: categorie };
         return this.common.findAllWithParams(sqlRequest, sqlParams)
             .then(row => row.map(beer => new Beer(beer)))
             .catch(err => err);
@@ -127,7 +127,7 @@ class BeerDAO {
         const sqlRequest = "INSERT INTO beer(" +
             "name, id, brewery_id, cat_id, style_id,alcohol_by_volume,international_bitterness_units,standard_reference_method,universal_product_code,filepath,description,add_user,last_mod,style,category,brewer,address,city,state,country,coordinates,website) " +
             "VALUES ($name, $id, $brewery_id, $cat_id, $style_id, $alcohol_by_volume, $international_bitterness_units, $standard_reference_method, $universal_product_code, $filepath, $description, $add_user, $last_mod, $style, $category, $brewer, $address, $city, $state, $country, $coordinates, $website)";
-            
+
         const sqlParams = {
             $name: beer.name,
             $id: beer.id,
@@ -158,7 +158,7 @@ class BeerDAO {
     // Suppression d'une bière
     deleteById(id) {
         let sqlRequest = "DELETE FROM beer WHERE id=$id";
-        let sqlParams = {$id: id};
+        let sqlParams = { $id: id };
         return this.common.run(sqlRequest, sqlParams);
     };
 
@@ -166,31 +166,30 @@ class BeerDAO {
     update(beer) {
         const sqlRequest = "UPDATE beer SET " +
             "name = $name, " +
-            "brewery_id=$brewery_id " +
-            "cat_id=$cat_id " +
-            "brewery_id=$brewery_id " +
-            "style_id=$style_id " +
-            "alcohol_by_volume=$alcohol_by_volume " +
-            "international_bitterness_units=$international_bitterness_units " +
-            "standard_reference_method=$standard_reference_method " +
-            "universal_product_code=$universal_product_code " +
-            "filepath=$filepath " +
-            "add_user=$add_user " +
-            "last_mod=$last_mod " +
-            "style=$style " +
-            "category=$category " +
-            "brewer=$brewer " +
-            "address=$address " +
-            "city=$city " +
-            "state=$state " +
-            "country=$country " +
-            "coordinates=$coordinates " +
+            "brewery_id=$brewery_id, " +
+            "cat_id=$cat_id, " +
+            "style_id=$style_id, " +
+            "alcohol_by_volume=$alcohol_by_volume, " +
+            "international_bitterness_units=$international_bitterness_units, " +
+            "standard_reference_method=$standard_reference_method, " +
+            "universal_product_code=$universal_product_code, " +
+            "filepath=$filepath, " +
+            "add_user=$add_user, " +
+            "last_mod=$last_mod, " +
+            "style=$style, " +
+            "category=$category, " +
+            "brewer=$brewer, " +
+            "address=$address, " +
+            "city=$city, " +
+            "state=$state, " +
+            "country=$country, " +
+            "coordinates=$coordinates, " +
             "website=$website " +
             "WHERE id=$id";
 
         const sqlParams = {
-            $name: beer.name,
             $id: beer.id,
+            $name: beer.name,
             $brewery_id: beer.brewery_id,
             $cat_id: beer.cat_id,
             $style_id: beer.style_id,
